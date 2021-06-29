@@ -37,3 +37,9 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Datafile with copyright issues 
+data/images/
+
+
+.Rproj.user
