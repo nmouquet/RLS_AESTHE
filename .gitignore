@@ -45,3 +45,7 @@ data/images/
 .Rproj.user
 .DS_Store
 
+# Large file
+results/elo/01_first_model.RData
+
+

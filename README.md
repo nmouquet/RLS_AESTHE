@@ -17,10 +17,12 @@ This repository is structured as follow:
 ## Notes
 
 All required packages will be installed (if necessary) and loaded.
+
+Script analyses/elo/01_group_effect.R normally generates and use a large file: 01_first_model.RData . It takes several days to generate this file but you can instead download it from https://zenodo.org/record/5052745#.YN2DpW46_LY (see lines 257-258 of script).
       
 Figures and tables will be stored in figures_tables/
     
-The file results/management/02_sptable_fishery.csv contains al the information used and procuded in this study at the species level for the 2417 species concerned
+The file results/management/02_sptable_fishery.csv contains all the information used and produced in this study at the species level for the 2417 species concerned
     
 The following Figures and Tables can be reproduced with the script indicated in brackets (all in analyses/):
     

@@ -254,7 +254,10 @@
   time.taken
 
 # Effect of each variable in the glmm
+  utils::download.file(url = "https://zenodo.org/record/5052745/files/01_first_model.RData?download=1",
+                       destfile = here::here(res_dir_elo, "01_first_model.RData"))
   load(here::here(res_dir_elo, "01_first_model.RData"))
+  
   sum_fm <- summary(first_model) # not a p-value but a z-value
   
 # View summary of first model (TABLE S1)
