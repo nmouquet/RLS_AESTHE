@@ -245,10 +245,18 @@ rm(funct_table)
 
   data <- read.csv(here::here(res_dir_biodiversity, "02_sptable_biodiv.csv"))
   
-  a <- ggplot2::ggplot(data, ggplot2::aes(y = esthe_score, x = ages_mean)) +
-    ggplot2::geom_point(shape = 21, alpha = 0.85,
-                        ggplot2::aes(fill = log(ED)), color = "gray65") + 
+  data <- data[which(!is.na(data$ED)),]
+  
+  data <- data[order(data$ED, decreasing = TRUE),]
+  rownames(data) <- NULL
+  
+  a <-
+    ggplot2::ggplot(data, ggplot2::aes(y = esthe_score, x = ages_mean)) +
+    ggplot2::geom_point(shape = 21, alpha = 1, size = 2 ,
+                        ggplot2::aes(fill = log(ED), color = log(ED))
+                        ) + 
     ggplot2::scale_fill_gradientn(colors = colors) +
+    ggplot2::scale_color_gradientn(colors = colors) +
     ggplot2::geom_smooth(method = "glm", formula = y~x, col = "gray30",
                          method.args = list(family = gaussian(link = 'log'))) +
     ggplot2::scale_x_continuous(trans = 'log2') +
@@ -260,15 +268,21 @@ rm(funct_table)
     ggplot2::labs(x ="Age of the species (MY)", y = "Aesthetic values")
   
   b <- ggplot2::ggplot(data, ggplot2::aes(y = esthe_score, x = Di)) +
-    ggplot2::geom_point(shape = 21, alpha = 0.8,
-                        ggplot2::aes(fill = log(ED)), color = "gray65") +
+    ggplot2::geom_point(shape = 21, alpha = 1, size = 2,
+                        ggplot2::aes(fill = log(ED), color = log(ED))) +
     ggplot2::scale_fill_gradientn(colours = colors) +
+    ggplot2::scale_color_gradientn(colours = colors) +
     ggplot2::geom_smooth(method = "lm", formula = y~x, col = 'gray30') +
     ggplot2::theme_bw() +
     ggplot2::theme(axis.text  = ggplot2::element_text(size = 8),
                    axis.title = ggplot2::element_text(size = 10),
                    panel.grid = ggplot2::element_blank(),
-                   legend.position = "none") +
+                   legend.position = c(0.89, 0.72),
+                   legend.background = ggplot2::element_blank(),
+                   legend.title = ggplot2::element_text(size = 8),
+                   legend.text = ggplot2::element_text(size = 8)
+                   # legend.position = "none"
+                   ) +
     ggplot2::labs(x ="Functional Distinctiveness", y = "Aesthetic values")
   
   
