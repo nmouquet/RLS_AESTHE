@@ -59,7 +59,7 @@ Clone the repository and run this command in R/RStudio:
 source("make.R")
 ```
 
-> :warn: WARNING: running `make.R` calls all the scripts and takes days so if you want to work on one or a few scripts, you should run lines 14-21 of `make.R` and then go to the other one.
+> :boom: WARNING: running `make.R` calls all the scripts and takes days so if you want to work on one or a few scripts, you should run lines 14-21 of `make.R` and then go to the other one.
 
 Enjoy!
 
