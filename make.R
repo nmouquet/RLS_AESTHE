@@ -36,9 +36,7 @@ source(here::here("analyses", "biodiversity", "01_phylogeny.R"))
 
 source(here::here("analyses", "biodiversity", "01_functional_div.R"))
 
-source(here::here("analyses", "management", "01_iucn_status.R"))
-
-source(here::here("analyses", "management", "01_fishery_importance.R"))
+source(here::here("analyses", "management", "01_conservation_status.R"))
 
 
 
