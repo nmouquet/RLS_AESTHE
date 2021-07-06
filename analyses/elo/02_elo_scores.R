@@ -27,7 +27,7 @@
 # (FIGURE S9) ----
 
 # Takes several days to run on multiple cores so it is better take a subset to have an overview
-  data       <- table_survey#[1-50000]
+  data       <- table_survey[1-50000]
   elo_scores <- booting_elo(data, stepelo = 500, runs = 100)
 
   write.csv(elo_scores, file = here::here(res_dir_elo, "02_stabilization_elo.csv"), row.names = FALSE)
@@ -50,7 +50,8 @@
 
 # Plot
   png(here::here("figures_tables", "FIGURE_S9.png"),
-      width = 800, height = 500, units  = "px")
+      width = 800, height = 500, units  = "px", family = "serif")
+  par(family = "serif")
   plot(elo_scores[,colnames(elo_scores) == c(med_name)], type = "l", ylim = c(900, 2250),
        x = elo_scores$match_nb,xlab = "Number of matches", ylab = "Elo score")
   lines(elo_scores[,colnames(elo_scores) == c(min_name)],col = "red", x = elo_scores$match_nb)
@@ -78,7 +79,7 @@
   # write.csv(scores, file = here::here(res_dir_elo, "03_eloscores_fisheyes.csv"), row.names = F)
   # 
   # # add the fisheyes scores to esthe_rls_images
-  # scores                     <- read.csv(here::here(res_dir_elo, "03_eloscores_fisheyes.csv"))
+  scores                     <- read.csv(here::here(res_dir_elo, "03_eloscores_fisheyes.csv"))
   
   esthe_focus$esthe_fisheyes <- vector(length = nrow(esthe_focus))
 
@@ -136,8 +137,8 @@
     ggplot2::theme_light() +
     ggplot2::xlim(minxy, maxxy) +
     ggplot2::ylim(minxy, maxxy) +
-    ggplot2::theme(axis.title = ggplot2::element_text(size = 8),
-                   axis.text = ggplot2::element_text(size = 6),
+    ggplot2::theme(axis.title = ggplot2::element_text(size = 8, family = "serif"),
+                   axis.text = ggplot2::element_text(size = 6, family = "serif"),
                    panel.grid = ggplot2::element_blank(),
                    legend.position = "none") +
     ggplot2::scale_x_continuous(breaks = c(1300, 1400, 1500, 1600, 1700),
@@ -157,7 +158,7 @@
 
   ggplot2::ggsave(plot = corr_elo_plot,
                   filename = here::here("figures_tables", "FIGURE_S10.jpg"),
-                  width = 8, height = 8, units = "cm", dpi = 600)
+                  width = 8, height = 8, units = "cm", dpi = 600, family = "serif")
 
   # Save
   write.csv(esthe_focus, file = here::here(res_dir_elo, "02_esthe_focus.csv"), row.names = F)

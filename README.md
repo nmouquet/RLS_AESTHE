@@ -22,7 +22,7 @@ Script analyses/elo/01_group_effect.R normally generates and use a large file: 0
       
 Figures and tables will be stored in figures_tables/
     
-The file results/management/02_sptable_fishery.csv contains all the information used and produced in this study at the species level for the 2417 species concerned
+The file results/conservation/01_sptable_fishery.csv contains all the information used and produced in this study at the species level for the 2417 species concerned
     
 The following Figures and Tables can be reproduced with the script indicated in brackets (all in analyses/):
     
@@ -30,7 +30,7 @@ The following Figures and Tables can be reproduced with the script indicated in 
 - Figure 2
 - Figure 3 (biodiversity/01_phylogeny.R must be run to have data for panel a and biodiversity/02_functional_div.R generates data for panel b and the entire figure)
 - Figure 4 (biodiversity/01_phylogeny.R produces the tree)
-- Figure 5 (management/01_iucn_status.R)
+- Figure 5 (conservation/01_iucn_status.R)
 
 - Figure S2
 - Figure S4
@@ -41,17 +41,19 @@ The following Figures and Tables can be reproduced with the script indicated in 
 - Figure S10 (elo/02_elo_scores.R)
 - Figure S11 (deep/01_size_effect.R)
 - Figure S12
-- Figure S13 (deep/02_prediction_perfomrance.R)
+- Figure S13 (biodiversity/01_phylogeny.R)
 - Figure S14 (biodiversity/01_phylogeny.R)
-- Figure S15 (biodiversity/01_phylogeny.R)
-- Figure S16 (biodiversity/02_functional_div.R)
-- Figure S17 (management/02_fishery_importance.R)
+- Figure S15 (biodiversity/02_functional_div.R)
+- Figure S16 (deep/03_aggregate_species_level.R)
+- Figure S17 (deep/03_aggregate_species_level.R)
+- Figure S18 (biodiversity/02_functional_div.R)
+- Figure S19 (conservation/01_conservation_status.R)
       
 - Table S1 (elo/01_group_effect.R)
 - Table S2 (biodiversity/01_phylogeny.R)
 - Table S4
 
-- Extended Table 2 (deep/03_aggreagte_scpecies_level.R)
+- Extended Table 2 (deep/03_aggregate_species_level.R)
 
 ## Usage
 

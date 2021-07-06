@@ -12,7 +12,8 @@ all_table  <- read.csv(here::here(res_dir_deep, "02_esthe_focus.csv"))
 
 # ----
 
-# Histogram of the number of pictures by species (Figure S16) ----
+# Histogram of the number of pictures by species
+# (Figure S16) ----
   # Number of pictures by species
   count <- as.data.frame(table(all_table$sp_worms))
   
@@ -24,14 +25,14 @@ all_table  <- read.csv(here::here(res_dir_deep, "02_esthe_focus.csv"))
     ggplot2::theme_light() +
     ggplot2::theme(legend.position = "none",
                    panel.grid = ggplot2::element_blank(),
-                   axis.text = ggplot2::element_text(size = 8),
-                   axis.title = ggplot2::element_text(size = 10)) +
+                   axis.text = ggplot2::element_text(size = 8, family = "serif"),
+                   axis.title = ggplot2::element_text(size = 10, family = "serif")) +
     ggplot2::geom_vline(xintercept = mean(count$Freq), lty = "dashed", col = "red") +
     ggplot2::labs(x = "Number of pictures by species", y = "Freq") 
   
   ggplot2::ggsave(plot = plot_2,
                   filename = here::here("figures_tables", "FIGURE_S16.jpg"), 
-                  width = 10, height = 8, units = "cm", dpi = 320)
+                  width = 10, height = 8, units = "cm", dpi = 600, family = "serif")
 # ----
 
 # Select the picture with the highest value per species ----
@@ -66,7 +67,8 @@ all_table  <- read.csv(here::here(res_dir_deep, "02_esthe_focus.csv"))
   
 # ----
   
-# Plot max values vs mean values (Figure S17)----
+# Plot max values vs mean values
+# (Figure S17)----
   
   plot <-
     ggplot2::ggplot(species_table, 
@@ -76,11 +78,11 @@ all_table  <- read.csv(here::here(res_dir_deep, "02_esthe_focus.csv"))
     ggplot2::theme_light() +
     ggplot2::theme(
       panel.grid        = ggplot2::element_blank(),
-      axis.title.y      = ggplot2::element_text(color = "black", size = 10),
-      axis.title.x      = ggplot2::element_text(color = "black", size = 10),
+      axis.title.y      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
+      axis.title.x      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
       axis.line.x       = ggplot2::element_line(linetype = "blank"),
-      axis.text.x       = ggplot2::element_text(size = 6), 
-      axis.text.y       = ggplot2::element_text(size = 6),
+      axis.text.x       = ggplot2::element_text(size = 8, family = "serif"), 
+      axis.text.y       = ggplot2::element_text(size = 8, family = "serif"),
       axis.ticks.x      = ggplot2::element_blank()) +
     ggplot2::labs(x = "Max aesthetic value", y = "Mean aesthetic value") 
 
@@ -89,7 +91,7 @@ summary(model)
 
 ggplot2::ggsave(plot = plot,
                 filename = here::here("figures_tables", "FIGURE_S17.jpg"), 
-                width = 10, height = 8, units = "cm", dpi = 320)
+                width = 10, height = 8, units = "cm", dpi = 600, family = "serif")
  
 # ----
   

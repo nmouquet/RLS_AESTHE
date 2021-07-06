@@ -308,9 +308,9 @@
   
 # Figure S13 ----
   
+  ed_table <- read.csv(here::here(res_dir_biodiversity, "01_sptable_phylo.csv"))
+  
   table       <- ed_table[-which(is.na(ed_table$ED)),]
-  esthe_table <- species_table[, c("sp_name", "esthe_score")]
-  table       <- merge(table, esthe_table, by = "sp_name")
   modlog      <- summary(lm(table$esthe_score ~ log(table$ED), na.action = na.omit))
   
   evol_dist   <-
@@ -324,13 +324,13 @@
                                 breaks = c(10, 50, 100, 150),
                                 labels = c("10", "50", "100", "150")) +
     ggplot2::theme_bw() +
-    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8),
-                   axis.title = ggplot2::element_text(size = 10),
+    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8, family = "serif"),
+                   axis.title = ggplot2::element_text(size = 10, family = "serif"),
                    panel.grid = ggplot2::element_blank())
 
     ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S13.jpg"),
                     plot = evol_dist, 
-                    width = 9, height = 9, units = "cm", dpi = 600, family = "sans")
+                    width = 9, height = 9, units = "cm", dpi = 600, family = "serif")
     
   rm(evol_dist, modlog, table, esthe_table, ed_table, set100)
 
@@ -432,15 +432,17 @@
     ggplot2::scale_y_continuous(breaks = c(1250,1500, 1750), limits = c(1100, 2400)) +
     ggplot2::theme(panel.grid.major = ggplot2::element_blank(),
                    panel.grid.minor = ggplot2::element_blank(),
-                   axis.text.y = ggplot2::element_text(face = "italic")) +
+                   axis.title = ggplot2::element_text(family = "serif"),
+                   axis.text  = ggplot2::element_text(family = "serif"),
+                   axis.text.y = ggplot2::element_text(face = "italic", family = "serif", size = 6.5)) +
     ggplot2::xlab("Families") +
     ggplot2::ylab("Aesthetic value") +
-    ggplot2::geom_text(inherit.aes = FALSE, data = Tukey.labels,
-                         ggplot2::aes(x = pos, y = 2050, label = Letters), hjust = 0, size = 4)
+    ggplot2::geom_text(inherit.aes = FALSE, data = Tukey.labels, family = "serif",
+                         ggplot2::aes(x = pos, y = 2050, label = Letters), hjust = 0, size = 3)
     
 # Save plot
   ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S14.jpg"), 
-                  plot = esthe_fam_plot)
+                  plot = esthe_fam_plot, family = "serif", dpi = 600)
   
   rm(esthe_fam_plot, red_sp, Tukey.labels, Tukey.levels, TUKEY, ANOVA, model, new_label,
      new_order_fac, fam_top, temp, i)

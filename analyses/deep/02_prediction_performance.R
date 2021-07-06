@@ -95,18 +95,17 @@
     ggplot2::ggplot(data = val_all, ggplot2::aes(x = evaluated_score, y = predicted_score, col = set)) + 
     ggplot2::geom_point(size = 3.5, shape = 20, alpha = 0.8) + 
     ggplot2::theme_light() + 
-    ggplot2::geom_smooth(method = "lm", se = TRUE, col = "black", lty = "dashed", alpha = 0.80) + 
+    ggplot2::geom_smooth(method = "lm", se = TRUE, col = "black", lty = "solid", alpha = 0.80) + 
     ggplot2::expand_limits(x = range(val_all$predicted_score), y = range(val_all$predicted_score)) +
     ggplot2::xlab("Evaluated aesthetic values") + 
     ggplot2::ylab("Predicted aesthetic values") +
-    ggplot2::scale_color_manual(values = wes_palette("FantasticFox1", n = 5)) +
-    # ggplot2::scale_color_manual(values = colors) +
+    ggplot2::scale_color_manual(values =  wes_palette("Darjeeling1")) +
     ggplot2::scale_x_continuous(breaks = c(1250, 1500, 1750, 2000),
                                 labels = c("1250", "1500", "1750", "2000")) + 
     ggplot2::scale_y_continuous(breaks = c(1250, 1500, 1750, 2000),
                                 labels = c("1250", "1500", "1750", "2000")) + 
-    ggplot2::theme(axis.title = ggplot2::element_text(size = 14),
-                   axis.text  = ggplot2::element_text(size = 8),
+    ggplot2::theme(axis.title = ggplot2::element_text(size = 14, family = "serif"),
+                   axis.text  = ggplot2::element_text(size = 9, family = "serif"),
                    panel.grid = ggplot2::element_blank(),
                    legend.position = "none")
   
@@ -152,7 +151,7 @@
                      min(pred_table$esthe_pred)+8*ecrtyp/11, min(pred_table$esthe_pred)+9*ecrtyp/11,
                      min(pred_table$esthe_pred)+10*ecrtyp/11, max(pred_table$esthe_pred)), y = 0)
   
-  par(mar = c(0,0,0,0))
+  par(mar = c(0,0,0,0), family = "serif")
   densplot <-
     ggplot2::ggplot(all_table, ggplot2::aes(x = esthe_pred, color = method, fill = method)) +
     ggplot2::geom_density(alpha = 0.5) + 
@@ -162,8 +161,8 @@
     ggplot2::scale_x_continuous(breaks = c(1250, 1500, 1750, 2000)) + 
     ggplot2::scale_fill_manual(values = c(colors[10], colors[8])) +
     ggplot2::scale_color_manual(values = c(colors[10], colors[8])) +
-    ggplot2::theme(axis.title      = ggplot2::element_text(size = 14),
-                   axis.text       = ggplot2::element_text(size = 8), 
+    ggplot2::theme(axis.title      = ggplot2::element_text(size = 14, family = "serif"),
+                   axis.text       = ggplot2::element_text(size = 9, family = "serif"), 
                    panel.grid      = ggplot2::element_blank(),
                    legend.position = "none") + 
     # Add the 12 points to show were the photos come from
@@ -172,11 +171,11 @@
                         size        = 3,
                         color       = colors[9]) +
     ggplot2::annotate(geom  = "text", label = paste0("Predicted (n=",length(which(all_table$method == "predicted")),")"),
-                      x     = 1550  , y     = 0.00272,
-                      color = colors[10], size = 4, hjust = 0) +
+                      x     = 1550  , y     = 0.00272, family = "serif",
+                      color = colors[10], size = 4.5, hjust = 0) +
     ggplot2::annotate(geom  = "text", label = paste0("Evaluated (n=",length(which(all_table$method == "evaluated")),")"),
-                      x     = 1550  , y     = 0.00248,
-                      color = colors[8], size = 4, hjust = 0)
+                      x     = 1550  , y     = 0.00248, family = "serif",
+                      color = colors[8], size = 4.5, hjust = 0)
 # ----
 
 # Gather the two plots (FIGURE 1b) ----
@@ -184,9 +183,9 @@
             ncol = 2, nrow = 1)
   # Save
   ggplot2::ggsave(plot  = plot, filename = here::here("figures_tables", "FIGURE_1b.jpg"),
-                  width = 20, height = 10, units = "cm", dpi = 320, family = "sans")
+                  width = 20, height = 10, units = "cm", dpi = 600, family = "serif")
   
   rm(densplot, all_table, eval, points_toshow, ecrtyp, learn_table, mod1, mod2, mod3, mod4, mod5, 
      perfplot, plot, pred_table, run1, run2, run3, run4, run5, scores_table, sum1, sum2, sum3,
      sum4, sum5, val_all, val1, val2, val3, val4, val5, i, Rsq1, Rsq2, Rsq3, Rsq4, Rsq5, eval_table)
-# ----
+# ---- 

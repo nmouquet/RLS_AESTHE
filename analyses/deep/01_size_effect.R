@@ -41,10 +41,10 @@
   
   plot <- ggplot2::ggplot(data = NULL, ggplot2::aes(x = Size, y = Rsquared)) +
       ggplot2::theme_light() +
-      ggplot2::theme(axis.title.y = ggplot2::element_text(color = "black", size = 14),
-                     axis.title.x = ggplot2::element_text(color = "black", size = 14),
-                     axis.text.x  = ggplot2::element_text(size = 12),
-                     axis.text.y  = ggplot2::element_text(size = 12),
+      ggplot2::theme(axis.title.y = ggplot2::element_text(color = "black", size = 14, family = "serif"),
+                     axis.title.x = ggplot2::element_text(color = "black", size = 14, family = "serif"),
+                     axis.text.x  = ggplot2::element_text(size = 12, family = "serif"),
+                     axis.text.y  = ggplot2::element_text(size = 12, family = "serif"),
                      axis.ticks.x = ggplot2::element_blank(), 
                      axis.ticks.y = ggplot2::element_blank(),
                      panel.grid.minor = ggplot2::element_blank()) +
@@ -59,16 +59,16 @@
      ggplot2::annotate("segment", x = 314, y = 0.562, xend = 359, yend = 0.562, col = pal[1], size = 1) +
      ggplot2::annotate("segment", x = 314, y = 0.537, xend = 359, yend = 0.537, col = pal[3], size = 1) +
      ggplot2::annotate(geom = "text", x = 395, y = .565, label = "ResNet18", 
-                       color = "black", size = 4) +
+                       color = "black", size = 4, family = "serif") +
      ggplot2::annotate(geom = "text", x = 395, y = .538, label = "ResNet50", 
-                       color = "black", size = 4) +
+                       color = "black", size = 4, family = "serif") +
       # axis
      ggplot2::scale_x_continuous(breaks = c(32, 64, 128, 224, 256, 512),
                                 labels = c("32", "64", "128", "224", "256", "512")) +
       ggplot2::labs(x = "Size of the pictures", y = "R2 on the test set")
   
 # Save plot
-  ggplot2::ggsave(plot = plot, family = "sans", units = "cm", width = 15, height = 15,
+  ggplot2::ggsave(plot = plot, family = "serif", units = "cm", width = 15, height = 15, dpi = 600,
                   filename = here::here("figures_tables", "FIGURE_S11.jpg"))
   
   rm(resnet18, resnet50, mean18, mean50, pal, plot, mean_perf)

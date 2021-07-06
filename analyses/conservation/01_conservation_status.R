@@ -128,7 +128,6 @@ source(here::here("R", "functions_cons.R"))
   
 # ----
   
-  
 # Get information about fishery importance from fishbase ----
   
   species_table <- read.csv(here::here(res_dir_conservation, "01_sp_table_cons.csv"))
@@ -236,16 +235,16 @@ source(here::here("R", "functions_cons.R"))
     ggplot2::geom_abline(intercept = mean(species_table$esthe_score), slope = 0, lty = "dashed", col = "black") +
     ggplot2::theme(
       panel.grid        = ggplot2::element_blank(),
-      axis.title.y      = ggplot2::element_text(color = "black", size = 10),
-      axis.title.x      = ggplot2::element_text(color = "black", size = 10),
+      axis.title.y      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
+      axis.title.x      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
       axis.line.x       = ggplot2::element_line(linetype = "blank"),
-      axis.text.x       = ggplot2::element_text(size = 8), 
-      axis.text.y       = ggplot2::element_text(size = 8),
+      axis.text.x       = ggplot2::element_text(size = 8, family = "serif"), 
+      axis.text.y       = ggplot2::element_text(size = 8, family = "serif"),
       axis.ticks.x      = ggplot2::element_blank()) +
     ggplot2::labs(x = "IUCN status", y = "Aesthetic values")+ 
-    ggplot2::geom_text(x = "thr", y = 2100, label = "a", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "nev", y = 2100, label = "b", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "nthr", y = 2100, label = "c", col = "#5b5b5b")
+    ggplot2::geom_text(x = "thr", y = 2100, label = "a", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "nev", y = 2100, label = "b", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "nthr", y = 2100, label = "c", col = "#5b5b5b", family = "serif")
   
 #----
   
@@ -291,22 +290,22 @@ source(here::here("R", "functions_cons.R"))
     ggplot2::geom_abline(intercept = mean(fishery_table$esthe_score),
                          slope = 0, lty = "dashed", col = "black") +
     ggplot2::theme(panel.grid        = ggplot2::element_blank(),
-                   axis.title.y      = ggplot2::element_text(color = "black", size = 10),
-                   axis.title.x      = ggplot2::element_text(color = "black", size = 10),
+                   axis.title.y      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
+                   axis.title.x      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
                    axis.line.x       = ggplot2::element_line(linetype = "blank"),
-                   axis.text.x       = ggplot2::element_text(size = 8), 
-                   axis.text.y       = ggplot2::element_text(size = 8),
+                   axis.text.x       = ggplot2::element_text(size = 8, family = "serif"), 
+                   axis.text.y       = ggplot2::element_text(size = 8, family = "serif"),
                    axis.ticks.x      = ggplot2::element_blank()) +
     ggplot2::labs(x = "Fishery importance", y = "Aesthetic values")+ 
-    ggplot2::geom_text(x = "0", y = 2100, label = "a", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "1", y = 2100, label = "a", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "2", y = 2100, label = "a", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "3", y = 2100, label = "b", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "4", y = 2100, label = "c", col = "#5b5b5b")
+    ggplot2::geom_text(x = "0", y = 2100, label = "a", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "1", y = 2100, label = "a", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "2", y = 2100, label = "a", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "3", y = 2100, label = "b", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "4", y = 2100, label = "c", col = "#5b5b5b", family = "serif")
   
   ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_5.jpg"),
                   plot = gridExtra::grid.arrange(a, b, nrow = 2), 
-                  width = 10, height = 16, units = "cm", dpi = 600, family = "sans")
+                  width = 10, height = 16, units = "cm", dpi = 600, family = "serif")
   
 # ----
   
@@ -350,16 +349,16 @@ source(here::here("R", "functions_cons.R"))
     ggplot2::geom_abline(intercept = mean(species_table$esthe_score_mean), slope = 0, lty = "dashed", col = "black") +
     ggplot2::theme(
       panel.grid        = ggplot2::element_blank(),
-      axis.title.y      = ggplot2::element_text(color = "black", size = 10),
-      axis.title.x      = ggplot2::element_text(color = "black", size = 10),
+      axis.title.y      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
+      axis.title.x      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
       axis.line.x       = ggplot2::element_line(linetype = "blank"),
-      axis.text.x       = ggplot2::element_text(size = 8), 
-      axis.text.y       = ggplot2::element_text(size = 8),
+      axis.text.x       = ggplot2::element_text(size = 8, family = "serif"), 
+      axis.text.y       = ggplot2::element_text(size = 8, family = "serif"),
       axis.ticks.x      = ggplot2::element_blank()) +
     ggplot2::labs(x = "IUCN status", y = "Aesthetic value (mean)")+ 
-    ggplot2::geom_text(x = "thr", y = 2100, label = "a", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "nev", y = 2100, label = "b", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "nthr", y = 2100, label = "c", col = "#5b5b5b")
+    ggplot2::geom_text(x = "thr",  y = 2100, label = "a", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "nev",  y = 2100, label = "b", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "nthr", y = 2100, label = "c", col = "#5b5b5b", family = "serif")
   
 # Panel b
   
@@ -403,22 +402,22 @@ source(here::here("R", "functions_cons.R"))
     ggplot2::geom_abline(intercept = mean(fishery_table$esthe_score_mean),
                          slope = 0, lty = "dashed", col = "black") +
     ggplot2::theme(panel.grid        = ggplot2::element_blank(),
-                   axis.title.y      = ggplot2::element_text(color = "black", size = 10),
-                   axis.title.x      = ggplot2::element_text(color = "black", size = 10),
+                   axis.title.y      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
+                   axis.title.x      = ggplot2::element_text(color = "black", size = 10, family = "serif"),
                    axis.line.x       = ggplot2::element_line(linetype = "blank"),
-                   axis.text.x       = ggplot2::element_text(size = 8), 
-                   axis.text.y       = ggplot2::element_text(size = 8),
+                   axis.text.x       = ggplot2::element_text(size = 8, family = "serif"), 
+                   axis.text.y       = ggplot2::element_text(size = 8, family = "serif"),
                    axis.ticks.x      = ggplot2::element_blank()) +
     ggplot2::labs(x = "Fishery importance", y = "Aesthetic values (mean)")+ 
-    ggplot2::geom_text(x = "0", y = 2100, label = "a", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "1", y = 2100, label = "a", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "2", y = 2100, label = "a", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "3", y = 2100, label = "b", col = "#5b5b5b") +
-    ggplot2::geom_text(x = "4", y = 2100, label = "c", col = "#5b5b5b")
+    ggplot2::geom_text(x = "0", y = 2100, label = "a", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "1", y = 2100, label = "a", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "2", y = 2100, label = "a", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "3", y = 2100, label = "b", col = "#5b5b5b", family = "serif") +
+    ggplot2::geom_text(x = "4", y = 2100, label = "c", col = "#5b5b5b", family = "serif")
   
   ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S19.jpg"),
                   plot = gridExtra::grid.arrange(a, b, nrow = 2), 
-                  width = 10, height = 16, units = "cm", dpi = 600, family = "sans")
+                  width = 10, height = 16, units = "cm", dpi = 600, family = "serif")
   
   
 #----

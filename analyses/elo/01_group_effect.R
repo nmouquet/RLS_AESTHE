@@ -69,9 +69,9 @@
     ggplot2::theme(legend.position = "none",
                    panel.grid = ggplot2::element_blank(),
                    panel.border = ggplot2::element_blank(),
-                   axis.text = ggplot2::element_text(size = 8),
-                   axis.title = ggplot2::element_text(size = 10))
-  ggplot2::ggsave(hist_count, filename = here::here("figures_tables", "Figure_S7a.jpg"))
+                   axis.text = ggplot2::element_text(size = 8, family = "serif"),
+                   axis.title = ggplot2::element_text(size = 10, family = "serif"))
+  ggplot2::ggsave(hist_count, filename = here::here("figures_tables", "Figure_S7a.jpg"), family = "serif")
 
 # Map of the number of judges per country (Figure S7b)
  
@@ -79,8 +79,9 @@
   count$freqlog <- log(count$Freq)
   sPDF          <- rworldmap::joinCountryData2Map(count, joinCode = 'ISO3', nameJoinColumn = 'Var1')
 
-  jpeg(filename = here::here("figures_tables", "Figure_S7b.jpg"),width = 10, height = 10, units = "cm", res = 600)
-  par(mar = c(1,1,1,1))
+  jpeg(filename = here::here("figures_tables", "Figure_S7b.jpg"),width = 10, height = 10,
+       units = "cm", res = 600, family = "serif")
+  par(mar = c(1,1,1,1), family = "serif")
   rworldmap::mapCountryData(mapToPlot = sPDF, nameColumnToPlot = "freqlog",
                             catMethod = c(0:10), colourPalette = "heat",
                             missingCountryCol = 'gray90', addLegend = TRUE,
@@ -147,8 +148,8 @@
         ggplot2::xlab(gsub("_", " ", firstup(name))) +
         viridis::scale_fill_viridis(alpha = 0.8) +
         ggplot2::theme(legend.position = "none",
-                       axis.text = ggplot2::element_text(size = 8),
-                       axis.title = ggplot2::element_text(size = 10))
+                       axis.text = ggplot2::element_text(size = 8, family = "serif"),
+                       axis.title = ggplot2::element_text(size = 10, family = "serif"))
         
     }else {
       if(nrow(count) <= 3){
@@ -158,8 +159,8 @@
           ggplot2::xlab(gsub("_", " ", firstup(name))) +
           viridis::scale_fill_viridis(begin = 0.2, end = 0.6, alpha = 0.8) +
           ggplot2::theme(legend.position = "none",
-                         axis.text = ggplot2::element_text(size = 8),
-                         axis.title = ggplot2::element_text(size = 10))
+                         axis.text = ggplot2::element_text(size = 8, family = "serif"),
+                         axis.title = ggplot2::element_text(size = 10, family = "serif"))
       }else{
         plot <- ggplot2::ggplot(count, ggplot2::aes(y = Freq, x = Var1)) +
           ggplot2::geom_bar(position = "dodge", stat = "identity", ggplot2::aes(fill = Freq)) +
@@ -167,8 +168,8 @@
           ggplot2::xlab(gsub("_", " ", firstup(name))) +
           viridis::scale_fill_viridis(begin = 0.2, end = 0.6, alpha = 0.8) +
           ggplot2::theme(legend.position = "none",
-                         axis.text = ggplot2::element_text(size = 8),
-                         axis.title = ggplot2::element_text(size = 10))
+                         axis.text = ggplot2::element_text(size = 8, family = "serif"),
+                         axis.title = ggplot2::element_text(size = 10, family = "serif"))
       } # eo else count
     } # else age
   
@@ -179,7 +180,7 @@
   
   ggplot2::ggsave(file = here::here("figures_tables", "FIGURE_S8.jpg"),
                   gridExtra::arrangeGrob(grobs = lplot, ncol = 5),
-                  width = 26, height = 26, units = "cm")
+                  width = 26, height = 26, units = "cm", family = "serif")
   
   rm(plot, lplot, i, j, name, count, judge)
 
@@ -214,24 +215,6 @@
   }
   
   kw <- kruskal.test(wins ~ as.factor(youth), data = table_elo_judge)
-  
-  table        <- table_elo_judge[,c("wins", "youth")]
-  youth_violin <- ggplot2::ggplot(table, ggplot2::aes(x = youth, y = wins)) + 
-    ggplot2::geom_violin(trim = FALSE, color = "white", ggplot2::aes(fill = youth)) +
-    ggplot2::geom_boxplot(width = 0.25, fill = "white") +
-    ggplot2::stat_summary(fun.y = mean, geom = "point", shape = 23, size = 2) +
-    viridis::scale_color_viridis(alpha = 0.65, begin = 0.4, end = 0.6) +
-    ggplot2::theme_classic() +
-    ggplot2::labs(y = "Probability of winning a match", x = "") + 
-    ggplot2::theme(legend.position = "none",
-          axis.title.y    = ggplot2::element_text(color = "black", size = 12),
-          title           = ggplot2::element_text(color = "black", size = 14),
-          axis.line.x     = ggplot2::element_line(linetype = "blank"),
-          axis.text.x     = ggplot2::element_text(size = 10), 
-          axis.ticks.x    = ggplot2::element_blank()) +
-    ggsignif::geom_signif(comparisons = list(c("under", "over")), 
-                map_signif_level = TRUE, y_position = 1.2, test = "wilcox.test",
-                tip_length = 0.02, size = 0.4, textsize = 3)
 
 # ----
   

@@ -261,8 +261,8 @@ rm(funct_table)
                          method.args = list(family = gaussian(link = 'log'))) +
     ggplot2::scale_x_continuous(trans = 'log2') +
     ggplot2::theme_bw() +
-    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8),
-                   axis.title = ggplot2::element_text(size = 10),
+    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8, family = "serif"),
+                   axis.title = ggplot2::element_text(size = 10, family = "serif"),
                    panel.grid = ggplot2::element_blank(),
                    legend.position = "none")+
     ggplot2::labs(x ="Age of the species (MY)", y = "Aesthetic values")
@@ -274,13 +274,13 @@ rm(funct_table)
     ggplot2::scale_color_gradientn(colours = colors) +
     ggplot2::geom_smooth(method = "lm", formula = y~x, col = 'gray30') +
     ggplot2::theme_bw() +
-    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8),
-                   axis.title = ggplot2::element_text(size = 10),
+    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8, family = "serif"),
+                   axis.title = ggplot2::element_text(size = 10, family = "serif"),
                    panel.grid = ggplot2::element_blank(),
                    legend.position = c(0.89, 0.72),
                    legend.background = ggplot2::element_blank(),
-                   legend.title = ggplot2::element_text(size = 8),
-                   legend.text = ggplot2::element_text(size = 8)
+                   legend.title = ggplot2::element_text(size = 8, family = "serif"),
+                   legend.text = ggplot2::element_text(size = 8, family = "serif")
                    # legend.position = "none"
                    ) +
     ggplot2::labs(x ="Functional Distinctiveness", y = "Aesthetic values")
@@ -289,7 +289,7 @@ rm(funct_table)
 # Save FIGURE 3 18X9cm 600dpi
   ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_3.jpg"),
                   plot = gridExtra::grid.arrange(a, b, ncol = 2), 
-                  width = 20, height = 8, units = "cm", dpi = 600, family = "sans")
+                  width = 20, height = 8, units = "cm", dpi = 600, family = "serif")
   
 # ----- 
   
@@ -306,8 +306,8 @@ rm(funct_table)
                          method.args = list(family = gaussian(link = 'log'))) +
     ggplot2::scale_x_continuous(trans = 'log2') +
     ggplot2::theme_bw() +
-    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8),
-                   axis.title = ggplot2::element_text(size = 10),
+    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8, family = "serif"),
+                   axis.title = ggplot2::element_text(size = 10, family = "serif"),
                    panel.grid = ggplot2::element_blank(),
                    legend.position = "none")+
     ggplot2::labs(x ="Age of the species (MY)", y = "Aesthetic values (mean)")
@@ -319,13 +319,13 @@ rm(funct_table)
     ggplot2::scale_color_gradientn(colours = colors) +
     ggplot2::geom_smooth(method = "lm", formula = y~x, col = 'gray30') +
     ggplot2::theme_bw() +
-    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8),
-                   axis.title = ggplot2::element_text(size = 10),
+    ggplot2::theme(axis.text  = ggplot2::element_text(size = 8, family = "serif"),
+                   axis.title = ggplot2::element_text(size = 10, family = "serif"),
                    panel.grid = ggplot2::element_blank(),
                    legend.position = c(0.89, 0.72),
                    legend.background = ggplot2::element_blank(),
-                   legend.title = ggplot2::element_text(size = 8),
-                   legend.text = ggplot2::element_text(size = 8)
+                   legend.title = ggplot2::element_text(size = 8, family = "serif"),
+                   legend.text = ggplot2::element_text(size = 8, family = "serif")
     ) +
     ggplot2::labs(x ="Functional Distinctiveness", y = "Aesthetic values (mean)")
   
@@ -333,7 +333,7 @@ rm(funct_table)
   # Save FIGURE S20 18X9cm 600dpi
   ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S18.jpg"),
                   plot = gridExtra::grid.arrange(a, b, ncol = 2), 
-                  width = 20, height = 8, units = "cm", dpi = 600, family = "sans")
+                  width = 20, height = 8, units = "cm", dpi = 600, family = "serif")
   
   # ----- 
 
@@ -400,9 +400,9 @@ rm(funct_table)
   
 # Save panel a, b, c
   jpeg(here::here("figures_tables", "FIGURE_S15_abc.jpg"),
-       width = 20, height = 7, units = "cm", res = 600)
+       width = 20, height = 7, units = "cm", res = 600, family = "serif")
   
-  par(mar = c(4, 4, 1, 0.5)) 
+  par(mar = c(4, 4, 1, 0.5), family = "serif") 
   layout(matrix(c(1,2,3), 1, 3, byrow = TRUE))
   
   # habitat
@@ -461,18 +461,19 @@ rm(funct_table)
     Tukey.labels$pos       <- length(Tukey.labels$Letters):1
   
 # Save panel d
-    jpeg(here::here(res_dir_biodiversity, "FIGURE_S15_d.jpg"),
-         width = 20, height = 10, units = "cm", res = 600)
+    jpeg(here::here("figures_tables", "FIGURE_S15_d.jpg"),
+         width = 20, height = 10, units = "cm", res = 600, family = "serif")
+    par(family = "serif")
     boxplot(datatrg$esthe_score ~ datatrg$trophic_group,
             ylim = c(min(datatrg$esthe_score, na.rm = TRUE),
                      1.2*max(datatrg$esthe_score, na.rm = TRUE)),
             col = colors[7], xlab = "Aesthetic Values", main = "",
             ylab = "Trophic group", outline = FALSE, horizontal = TRUE, yaxt = "n",
             cex.lab = 0.85, 
-            cex.axis = 0.50) 
+            cex.axis = 0.50, family = "serif") 
     abline(v = mean(datatrg$esthe_score, na.rm = TRUE), col = colors[2], lty = 2, lwd = 2)
-    text(2400, c(length(unique(datatrg$trophic_group))):1, Tukey.labels$Letters)
-    text(2000, Tukey.labels$pos, Tukey.labels$treatment, adj = 0)
+    text(2400, c(length(unique(datatrg$trophic_group))):1, Tukey.labels$Letters, family = "serif")
+    text(2000, Tukey.labels$pos, Tukey.labels$treatment, adj = 0, family = "serif")
     dev.off()
   
 # Panels e, f, g, h: max_length, trophic_level, thermal_mp_5min_95max, thermal_95thmax 
@@ -488,7 +489,9 @@ rm(funct_table)
       ggplot2::theme_bw() +
       ggplot2::theme(legend.position = "none",
                      panel.grid.major = ggplot2::element_blank(),
-                     panel.grid.minor = ggplot2::element_blank()) +
+                     panel.grid.minor = ggplot2::element_blank(),
+                     axis.title       = ggplot2::element_text(family = "serif"),
+                     axis.text        = ggplot2::element_text(family = "serif")) +
       ggplot2::labs(x = "Max length", y = "Aesthetic value")
   
   # Trophic_level 
@@ -502,7 +505,9 @@ rm(funct_table)
       ggplot2::theme_bw() +
       ggplot2::theme(legend.position = "none",
                      panel.grid.major = ggplot2::element_blank(),
-                     panel.grid.minor = ggplot2::element_blank()) +
+                     panel.grid.minor = ggplot2::element_blank(),
+                     axis.title       = ggplot2::element_text(family = "serif"),
+                     axis.text        = ggplot2::element_text(family = "serif")) +
       ggplot2::labs(x ="Trophic level", y = "Aesthetic value")
   
   # Thermal_mp_5min_95max 
@@ -516,7 +521,9 @@ rm(funct_table)
       ggplot2::theme_bw() +
       ggplot2::theme(legend.position = "none",
                      panel.grid.major = ggplot2::element_blank(),
-                     panel.grid.minor = ggplot2::element_blank()) +
+                     panel.grid.minor = ggplot2::element_blank(), 
+                     axis.title       = ggplot2::element_text(family = "serif"),
+                     axis.text        = ggplot2::element_text(family = "serif")) +
       ggplot2::labs(x ="Thermal mp 5min 95max", y = "Aesthetic value")
   
   
@@ -531,13 +538,15 @@ rm(funct_table)
       ggplot2::theme_bw() +
       ggplot2::theme(legend.position = "none",
                      panel.grid.major = ggplot2::element_blank(),
-                     panel.grid.minor = ggplot2::element_blank())+
+                     panel.grid.minor = ggplot2::element_blank(),
+                     axis.title       = ggplot2::element_text(family = "serif"),
+                     axis.text        = ggplot2::element_text(family = "serif")) +
       ggplot2::labs(x ="Thermal 95thmax", y = "Aesthetic value")
   
 # Save panels efgh
-  ggplot2::ggsave(filename = here::here(res_dir_biodiversity, "FIGURE_S15_efgh.jpg"),
+  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S15_efgh.jpg"),
                   plot = gridExtra::grid.arrange(a, b, c, d, ncol = 2), 
-                  width = 20, height = 12, units = "cm", dpi = 600, family = "sans")
+                  width = 20, height = 12, units = "cm", dpi = 600, family = "serif")
 # ----  
   
   

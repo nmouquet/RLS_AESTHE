@@ -22,7 +22,7 @@ cran_packages <- c(
   
   "multcompView","numbers", "parallel", "picante", "plyr", "pdp",
   
-  "remotes", "relaimpo", "reshape2", "rlang",
+  "remotes", "relaimpo", "reshape2", "rlang", "rworldmap",
   
   "SDMTools", "splancs", "tidyr", "tidyjson", "tidytree", "treeio",
   
