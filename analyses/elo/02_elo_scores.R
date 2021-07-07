@@ -76,10 +76,10 @@
   scores <- data.frame(name = species, elo_score = scores[sort(names(scores))])
   
   # # saving the results
-  # write.csv(scores, file = here::here(res_dir_elo, "03_eloscores_fisheyes.csv"), row.names = F)
+  # write.csv(scores, file = here::here(res_dir_elo, "02_eloscores_fisheyes.csv"), row.names = F)
   # 
   # # add the fisheyes scores to esthe_rls_images
-  scores                     <- read.csv(here::here(res_dir_elo, "03_eloscores_fisheyes.csv"))
+  scores                     <- read.csv(here::here(res_dir_elo, "02_eloscores_fisheyes.csv"))
   
   esthe_focus$esthe_fisheyes <- vector(length = nrow(esthe_focus))
 
@@ -137,8 +137,8 @@
     ggplot2::theme_light() +
     ggplot2::xlim(minxy, maxxy) +
     ggplot2::ylim(minxy, maxxy) +
-    ggplot2::theme(axis.title = ggplot2::element_text(size = 8, family = "serif"),
-                   axis.text = ggplot2::element_text(size = 6, family = "serif"),
+    ggplot2::theme(axis.title = ggplot2::element_text(size = 10, family = "serif"),
+                   axis.text = ggplot2::element_text(size = 8, family = "serif"),
                    panel.grid = ggplot2::element_blank(),
                    legend.position = "none") +
     ggplot2::scale_x_continuous(breaks = c(1300, 1400, 1500, 1600, 1700),

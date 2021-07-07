@@ -1,7 +1,7 @@
 ###################################################################################################
 #' Socio cultural background effect
 #'
-#'This script analyses if the scocio-cultural background pf the judges of the online survey has an
+#'This script analyses if the socio-cultural background pf the judges of the online survey has an
 #'effect on the aesthetic score attribute to the photographs and if yes, quantifies this effect
 #'
 #'Produces Figure S7, Figure S8 and Table S1 of the Langlois et al. & Mouquet 2021 paper.
@@ -69,8 +69,8 @@
     ggplot2::theme(legend.position = "none",
                    panel.grid = ggplot2::element_blank(),
                    panel.border = ggplot2::element_blank(),
-                   axis.text = ggplot2::element_text(size = 8, family = "serif"),
-                   axis.title = ggplot2::element_text(size = 10, family = "serif"))
+                   axis.text = ggplot2::element_text(size = 10, family = "serif"),
+                   axis.title = ggplot2::element_text(size = 12, family = "serif"))
   ggplot2::ggsave(hist_count, filename = here::here("figures_tables", "Figure_S7a.jpg"), family = "serif")
 
 # Map of the number of judges per country (Figure S7b)
@@ -148,8 +148,8 @@
         ggplot2::xlab(gsub("_", " ", firstup(name))) +
         viridis::scale_fill_viridis(alpha = 0.8) +
         ggplot2::theme(legend.position = "none",
-                       axis.text = ggplot2::element_text(size = 8, family = "serif"),
-                       axis.title = ggplot2::element_text(size = 10, family = "serif"))
+                       axis.text = ggplot2::element_text(size = 10, family = "serif"),
+                       axis.title = ggplot2::element_text(size = 12, family = "serif"))
         
     }else {
       if(nrow(count) <= 3){
@@ -159,8 +159,8 @@
           ggplot2::xlab(gsub("_", " ", firstup(name))) +
           viridis::scale_fill_viridis(begin = 0.2, end = 0.6, alpha = 0.8) +
           ggplot2::theme(legend.position = "none",
-                         axis.text = ggplot2::element_text(size = 8, family = "serif"),
-                         axis.title = ggplot2::element_text(size = 10, family = "serif"))
+                         axis.text = ggplot2::element_text(size = 10, family = "serif"),
+                         axis.title = ggplot2::element_text(size = 12, family = "serif"))
       }else{
         plot <- ggplot2::ggplot(count, ggplot2::aes(y = Freq, x = Var1)) +
           ggplot2::geom_bar(position = "dodge", stat = "identity", ggplot2::aes(fill = Freq)) +
@@ -168,8 +168,8 @@
           ggplot2::xlab(gsub("_", " ", firstup(name))) +
           viridis::scale_fill_viridis(begin = 0.2, end = 0.6, alpha = 0.8) +
           ggplot2::theme(legend.position = "none",
-                         axis.text = ggplot2::element_text(size = 8, family = "serif"),
-                         axis.title = ggplot2::element_text(size = 10, family = "serif"))
+                         axis.text = ggplot2::element_text(size = 10, family = "serif"),
+                         axis.title = ggplot2::element_text(size = 12, family = "serif"))
       } # eo else count
     } # else age
   
