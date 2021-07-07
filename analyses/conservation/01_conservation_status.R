@@ -3,8 +3,13 @@
 #'
 #'Produces Figure 5 and Figure S19 of the Langlois et al. & Mouquet 2021 paper.
 #'
+#'Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
+#'        Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
+#'        François Guilhaumon, \email{francois.guilhaumon@@ird.fr},
+#'        Nicolas Casajus, \email{nicolas.casajus@@fondationbiodiversite.fr},
+#'        Nicolas Loiseau, \email{nicolas.loiseau1@@gmail.com}
 #'
-#' @date 2021/03/01
+#' @date 2021/06/29
 ##################################################################################################
 
 source(here::here("R", "functions_cons.R"))
@@ -17,64 +22,6 @@ source(here::here("R", "functions_cons.R"))
 
 # Get IUCN status from fishbase ----
   
-  get_fishbase_data <- function(x = "Regalecus-glesne"){
-
-    #url2 <- paste("http://www.fishbase.de/summary/",x,".html",sep="")
-    url2      <- paste("http://www.fishbase.se/summary/",x,".html",sep="")
-    c         <- XML::htmlParse(RCurl::getURLContent(url2, followlocation=TRUE))
-    link_list <- XML::getHTMLLinks(c, externalOnly = TRUE, xpQuery = "//a/@href", baseURL = docName(c))
-
-    if(length(link_list) == 0){
-      stop(paste(x, " is not an accepted name in fishbase, check for spelling mistakes and/or synonyms", sep = ""))
-    }
-
-    a1 <- XML::getNodeSet(c, "//div ")
-    a  <- XML::getNodeSet(c, "//span ")
-    rm(c)
-
-    if (length(a)!=0){
-      d  <- XML::xmlValue(a[[which.max(sapply(lapply(a, XML::xmlValue), function(x){regexec(pattern="Ecology", x)[[1]][1]}))+2]])
-      m  <- regmatches(d,gregexpr(pattern = "[-[:alpha:]]+;", d))
-      m1 <- regmatches(d,gregexpr(pattern = "[[:alpha:]]+", d))[[1]]
-      m  <- gsub(";", "", unlist(m))
-
-      List_env1 <- c("Marine","Freshwater","brackish")
-      List_env2 <- c("bathydemersal", "bathypelagic", "benthopelagic","benthopelagic.","demersal","demersal.",
-                     "pelagic", "pelagic-neritic", "pelagic-oceanic", "reef-associated")
-      clim      <- c("Tropical","Temperate","Boreal","Subtropical","Deep-water")
-
-      env1 <- paste(m[which(is.element(m,List_env1)==T)],collapse="_")
-
-      env2 <- m1[which(is.element(m1,List_env2)==T)]
-      env2_1 <-  m[which(is.element(m,List_env2)==T)]
-
-      w_IUCN  <- which(sapply(lapply(a1, XML::xmlValue), function(x){regexec(pattern="IUCN", x)[[1]][1]})>0)
-      if(length(w_IUCN) == 0){
-        IUCN_status = NA
-      } else {
-        d1_IUCN     <- XML::xmlValue(a1[[w_IUCN[length(w_IUCN)]]])
-        IUCN        <- unlist(regmatches(d1_IUCN,gregexpr(pattern= "[[:alpha:]]+)", d1_IUCN)))
-        IUCN_status <- sub(pattern="[[:punct:]]",replacement="",IUCN[1] )
-      } # end of ifelse
-
-      rm(a1)
-
-      res <- data.frame(c(IUCN_status = IUCN_status))
-
-      rownames(res) = x
-
-    } else {
-
-      IUCN_status = "A_verifier"
-
-      res <- data.frame(c(IUCN_status = IUCN_status))
-      rownames(res) = x
-    }
-
-    return(res)
-
-  }
-
   sp_list          <- data.frame(worms = gsub("_", "-", species_table$sp_name))
   sp_list$fishbase <- as.character(sp_list$worms)
   sp_list$fishbase[which(as.character(sp_list$worms) =="Pseudocaranx-georgianus")]         <- "Pseudocaranx-dentex"
@@ -83,7 +30,7 @@ source(here::here("R", "functions_cons.R"))
   sp_list$fishbase[which(as.character(sp_list$worms) =="Platybelone-argalus-argalus")]     <- "Platybelone-argalus"
 
   start.time <- Sys.time()
-  data_iucn  <- do.call(rbind, lapply(sp_list$fishbase, get_fishbase_data))
+  data_iucn  <- do.call(rbind, lapply(sp_list$fishbase, get_iucn))
   end.time   <- Sys.time()
   time.taken <- end.time - start.time
   time.taken

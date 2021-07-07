@@ -9,17 +9,15 @@
 ##################################################################################################
 
 # GET CLASSIF
-#' Title
+#' Extract classification of a list of species from the worms database
 #'
-#' @param names 
+#' @param names species names
 #'
 #' @return
 #' @export
 #'
 get_classif <- function(names) {
-  # names <- table$acc_sci_name[1:10]
   A <- data.frame(name = names, kingdom = NA, phylum = NA, 
-                  # subphylum = NA, superclass = NA, 
                   class = NA, order = NA, family = NA, genus = NA, species = NA)
   for (i in 1:length(names)) {
     classi <- taxize::classification(names[i], db="worms")
@@ -27,8 +25,6 @@ get_classif <- function(names) {
     if (length(classi)==1) {
       A[i, "kingdom"]    = NA
       A[i, "phylum"]     = NA
-      # A[i, "subphylum"]  = NA
-      # A[i, "superclass"] = NA
       A[i, "class"]      = NA
       A[i, "order"]      = NA
       A[i, "family"]     = NA
@@ -37,8 +33,6 @@ get_classif <- function(names) {
     } else {
       kingdom    <- classi$name[classi$rank=="Kingdom"]
       phylum     <- classi$name[classi$rank=="Phylum"]
-      # subphylum  <- classi$name[classi$rank=="Subphylum"]
-      # superclass <- classi$name[classi$rank=="Superclass"]
       class      <- classi$name[classi$rank=="Class"]
       order      <- classi$name[classi$rank=="Order"]
       family     <- classi$name[classi$rank=="Family"]
@@ -46,8 +40,6 @@ get_classif <- function(names) {
       species    <- classi$name[classi$rank=="Species"]
       A[i, "kingdom"]    = kingdom
       A[i, "phylum"]     = phylum    
-      # A[i, "subphylum"]  = subphylum 
-      # A[i, "superclass"] = superclass
       A[i, "class"]      = class
       A[i, "order"]      = order     
       A[i, "family"]     = family    
@@ -57,12 +49,12 @@ get_classif <- function(names) {
   }
   return(A)
 }
-#
+
 
 # Get Ages
-#' Title
+#' compute the age of all the species on the leaves of a phylgenetic tree
 #'
-#' @param tree 
+#' @param treea phylogenetic object
 #'
 #' @return
 #' @export
@@ -80,4 +72,3 @@ get_ages <- function(tree){
   ages
   
 }
-#

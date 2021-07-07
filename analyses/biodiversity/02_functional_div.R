@@ -4,7 +4,12 @@
 #'This script produces Figure 3, Figure S15 and Figure S18 of the 
 #'Langlois et al. & Mouquet 2021 paper.
 #'
-#' @date 2021/02/17
+#'@author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
+#'        Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
+#'        François Guilhaumon, \email{francois.guilhaumon@@ird.fr},
+#'        Nicolas Casajus, \email{nicolas.casajus@@fondationbiodiversite.fr}
+#'
+#' @date 2021/06/29
 ##################################################################################################
 
 # Load data ----

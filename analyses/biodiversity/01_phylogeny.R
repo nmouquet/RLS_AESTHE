@@ -4,6 +4,12 @@
 #'This script produces the background of Figure 4, Figure S13, Figure S14 and Table S2 of the 
 #'Langlois et al. & Mouquet 2021 paper.
 #'
+#'@author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
+#'        Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
+#'        Alienor Stahl, \email{a.stahl67@@gmail.com},
+#'        Florian Baletaud, \email{baletaudflorian@@gmail.com},
+#'        François Guilhaumon, \email{francois.guilhaumon@@ird.fr}
+#'
 #'
 #' @date 2021/06/29
 ################################################################################################

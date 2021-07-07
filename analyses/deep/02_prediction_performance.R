@@ -4,6 +4,9 @@
 #'Produces Figure 1 panel b of the Langlois et al. & Mouquet 2021 paper.
 #'
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
+#'         Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
+#'         Valentine Fleure \email{valentine.fleure@@gmail.com},
+#'         Julien Renoult \email{jurenoult@@gmail.com}
 #'         
 #'
 #' @date 2021/06/29

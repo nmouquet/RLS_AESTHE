@@ -9,7 +9,7 @@
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'         Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
 #'         François Guilhaumon, \email{francois.guilhaumon@@ird.fr}
-#'         Alienor
+#'         Alienor Stahl, \email{a.stahl67@@gmail.com}
 #'
 #' @date 2021/06/29
 ##################################################################################################
