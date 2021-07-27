@@ -1,6 +1,6 @@
 # RLS_AESTHE
 
-Research compendium to reproduce analyses and figures of the following article:
+Research compendium to reproduce analyses and figures of the following article: "Biases in the aesthetic value of the world’s reef fishes in relation to ecological traits, phylogeny and conservation status Langlois et al. & Mouquet." Submitted to Nature Communication.
 
 R code and data to reproduce figures and tables of main text and appendices of Langlois et al.'s &amp; Mouquet XXXX article 
 
@@ -15,13 +15,13 @@ This repository is structured as follow:
     
 ## Storage
 
-Not all fish images are free of copyrights and thousands of images are too heavy to be stored on github. We thus provide a example sample of images in `data/example_imgaes/`. The codes calling the images will show errors but you can use the example images to run them.
+Not all fish images are free of copyrights. We thus provide a example sample of images in `data/example_imgaes/`. The codes calling all images will show errors but you can use the example images set to run them. See Extended table 1 for copyrights. 
 
 The script `analyses/elo/01_group_effect.R` normally generates and use a large file: 01_first_model.RData . It takes several days to generate this file but you can instead download it from https://zenodo.org/record/5052745#.YN2DpW46_LY (see lines 257-258 of script).
 
 ## File with all results  
 
-The file results/conservation/01_sptable_fishery.csv contains all the information used and produced in this study at the species level for the 2417 species concerned
+The file results/conservation/01_sptable_fishery.csv contains all the information used and produced in this study at the species level for the 2417 species concerned. You are welcome to use it by citing properly our work, but even more welcolme to contact us if you want to collaborate :) 
     
 ## Figures and Tables
 
@@ -30,14 +30,16 @@ Figures and Tables will be stored in `figures_tables/`
 The following Figures and Tables can be reproduced with the script indicated in brackets (all in `analyses/`):
     
 - Figure 1b (`deep/02_prediction_performances.R`)
-- Figure 2
+- Figure 2a (`features/features_analysis.R`)
+- Figure 2b (`features/features_analysis.R`) 
 - Figure 3 (`biodiversity/01_phylogeny.R` must be run to have data for panel a and `biodiversity/02_functional_div.R` generates data for panel b and the entire figure)
 - Figure 4 (`biodiversity/01_phylogeny.R` produces the tree)
 - Figure 5 (`conservation/01_iucn_status.R`)
-
-- Figure S2
-- Figure S4
-- Figure S5
+- Figure S1 reproduced wikipedia source (see legend) 
+- Figure S2 (`features/cluster.R`) 
+- Figure S3 modified from wikipedia source (see legend) 
+- Figure S4  (`features/momocs.R`)
+- Figure S5  (`features/features_analysis.R`)
 - Figure S7  (`elo/01_group_effect.R`)
 - Figure S8  (`elo/01_group_effect.R`)
 - Figure S9  (`elo/02_elo_scores.R`)

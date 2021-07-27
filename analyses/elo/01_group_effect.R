@@ -60,7 +60,7 @@
 
   count_top <- count[which(count$Freq >= 100),]
   
-# Histogram of the number of judges per country for the counrties with 100 judges or more
+# Histogram of the number of judges per country for the countries with 100 judges or more
 # Figure S7a
   hist_count <- ggplot2::ggplot(count_top, ggplot2::aes(x = reorder(Var1,-Freq),Freq)) +
     ggplot2::geom_bar(stat ="identity", position = "dodge", fill = "lightblue") +

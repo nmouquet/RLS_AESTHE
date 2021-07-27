@@ -1,5 +1,5 @@
 ###################################################################################################
-#' Functions used in the sripts of the folder analysis/biodiversity
+#' Functions used in the scripts of the folder analysis/biodiversity
 #'
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'         Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},

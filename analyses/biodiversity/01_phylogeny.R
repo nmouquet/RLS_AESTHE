@@ -66,6 +66,11 @@
 # ----
   
 # Families ----
+  load(here::here(res_dir_biodiversity, "01_set100.RData"))
+  
+  temp        <- set100[[1]]$tip.label
+  
+  missing_all <- setdiff(phylo_table$sp_name, temp) # 41 species missing in the tree
   
 # Remove the species not found by fishtree
   phylo_table        <- phylo_table[phylo_table$sp_name %in% set100[[1]]$tip.label,]
