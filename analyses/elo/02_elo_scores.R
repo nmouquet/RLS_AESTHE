@@ -53,7 +53,7 @@
       width = 800, height = 500, units  = "px", family = "serif")
   par(family = "serif")
   plot(elo_scores[,colnames(elo_scores) == c(med_name)], type = "l", ylim = c(900, 2250),
-       x = elo_scores$match_nb,xlab = "Number of matches", ylab = "Elo score")
+       x = elo_scores$match_nb, xlab = "Number of matches", ylab = "Elo score")
   lines(elo_scores[,colnames(elo_scores) == c(min_name)],col = "red", x = elo_scores$match_nb)
   lines(elo_scores[,colnames(elo_scores) == c(max_name)],col = "green", x = elo_scores$match_nb)
   graphics::rasterImage(max_pict, xleft = 270000, xright = 320000, ybottom = 1870, ytop = 2370)

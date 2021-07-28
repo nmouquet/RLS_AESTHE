@@ -1,3 +1,12 @@
+###################################################################################################
+#' Function used in script analyses/features/features_analysis.R
+#' 
+#' 
+#' @author Nicolas Casajus, \email{nicolas.casajus@@gmail.com}
+#'
+#' @date 2021/02/17
+##################################################################################################
+
 #' Shadow a text
 #'
 #' @description

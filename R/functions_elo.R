@@ -1,10 +1,11 @@
 ###################################################################################################
-#' Functions used in the sripts of the folder analysis/elo
+#' Functions used in the scripts of the folder analysis/elo
 #' 
 #'
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'         Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
-#'         François Guilhaumon, \email{francois.guilhaumon@@ird.fr}
+#'         François Guilhaumon, \email{francois.guilhaumon@@ird.fr},
+#'         Alienor Stahl, \email{a.stahl67@@gmail.com}
 #'
 #' @date 2021/02/17
 ##################################################################################################
@@ -24,8 +25,13 @@
 booting_elo <- function(data, startvalue = 1500, runs = 1, stepelo = 100) {
   
   # initialization of the dataframe to record the elo scores
-  elo_match_nb           <- as.data.frame(matrix(NA, nrow = 1, ncol = length(unique(c(data$challenger_1, data$challenger_2))) + 1))
-  species                <- sort(unique(c(as.character(data$challenger_1), as.character(data$challenger_2))), decreasing = FALSE)
+  elo_match_nb           <- as.data.frame(matrix(NA,
+                                                 nrow = 1,
+                                                 ncol = length(unique(c(data$challenger_1,
+                                                                        data$challenger_2))) + 1))
+  species                <- sort(unique(c(as.character(data$challenger_1),
+                                          as.character(data$challenger_2))), 
+                                 decreasing = FALSE)
   colnames(elo_match_nb) <- c('match_nb', species)
   
   # Start at match 1
@@ -37,7 +43,10 @@ booting_elo <- function(data, startvalue = 1500, runs = 1, stepelo = 100) {
   
   cat("min nb match:",minmatch,"\n")
   
-  res                      <- EloChoice::elochoice(winner = data$Winner[1:minmatch], loser = data$Loser[1:minmatch], startvalue = startvalue, runs = runs)
+  res                      <- EloChoice::elochoice(winner     = data$Winner[1:minmatch], 
+                                                   loser      = data$Loser[1:minmatch],
+                                                   startvalue = startvalue,
+                                                   runs       = runs)
   elo                      <- EloChoice::ratings(res, drawplot = F)
   elo_match_nb             <- tidyjson::bind_rows(elo_match_nb, elo[sort(names(elo))])
   elo_match_nb$match_nb[2] <-  minmatch
@@ -52,9 +61,10 @@ booting_elo <- function(data, startvalue = 1500, runs = 1, stepelo = 100) {
   while(match_current < maxmatch + extra) {
     
     match_current              <-  match_current + stepelo
-    res                        <- EloChoice::elochoice(winner = data$Winner[1:match_current], 
-                                                       loser  = data$Loser[1:match_current], startvalue = startvalue, 
-                                                       runs   = runs)
+    res                        <- EloChoice::elochoice(winner     = data$Winner[1:match_current], 
+                                                       loser      = data$Loser[1:match_current], 
+                                                       startvalue = startvalue, 
+                                                       runs       = runs)
     elo                        <- EloChoice::ratings(res, drawplot = F)
     elo_match_nb               <- tidyjson::bind_rows(elo_match_nb, elo[sort(names(elo))])
     elo_match_nb$match_nb[pos] <- match_current
@@ -125,27 +135,33 @@ jpeg_name <- function(path_photo, out_photo, x, y, size){
 #'
 look_dev <- function(dat, explvar, respvar, randomvar, ord, model_ini, proc){
   
-  # dat = table_elo_judge; explvar = list_var; respvar = "wins"; randomvar = "challenger_1"; ord = "minusvar"; model_ini = first_model ; proc = 4
+  # dat = table_elo_judge; explvar = list_var; respvar = "wins"; randomvar = "challenger_1";
+  # ord = "minusvar"; model_ini = first_model ; proc = 4
   
   # Prepare the character chain for random effects
   randomform <- paste0("(1|", randomvar)
   randomform <- paste0(randomform, ")")
   randomform <- paste0(randomform, collapse = "+")
   
-  # linear regression between the target variable "respvar" and all the explaining variables "all_id"
+  # linear regression between the target variable "respvar" and 
+  # all the explaining variables "all_id"
   sumall <- summary(model_ini)
   
-  # get the % of deviance lost/gained when removing variable i from the model and the % of deviance lost/gained with the variable alone 
+  # get the % of deviance lost/gained when removing variable i from the model 
+  # and the % of deviance lost/gained with the variable alone 
   filist <- list.files(here::here(res_dir_elo))
   
   out_data <- as.data.frame(
     do.call(
       rbind, parallel::mclapply(1:length(explvar),function(i){
-        # get the % of deviance varying between the full model and the model without variable i
+        # get the % of deviance varying between the full model and the model 
+        # without variable i
         if(length(grep(pattern = paste0("modminus_", explvar[i]), x = filist)) != 0){
           modminus <- readRDS(here::here(res_dir_elo, paste0("modminus_", explvar[i], ".rds")))
         }else{
-          modminus <- lme4::glmer(as.formula(paste(respvar," ~ ", paste(explvar[-i], collapse = "+"), "+", randomform)),
+          modminus <- lme4::glmer(as.formula(paste(respvar," ~ ", 
+                                                   paste(explvar[-i], collapse = "+"),
+                                                   "+", randomform)),
                                   family = binomial, data = dat, na.action = na.fail)
           modname  <- paste0("modminus_", explvar[i])
           assign(x = modname, value  = modminus)
@@ -153,9 +169,11 @@ look_dev <- function(dat, explvar, respvar, randomvar, ord, model_ini, proc){
         } # eo if
       
         summin       <- summary(modminus)
-        dev_minusvar <- round(100 - (summin$AICtab[["deviance"]] / sumall$AICtab[["deviance"]] * 100), 3) # round because of floatting zeros
+        dev_minusvar <- round(100 - (summin$AICtab[["deviance"]] /
+                                       sumall$AICtab[["deviance"]] * 100), 3) 
+        # round because of floatting zeros
       
-        # get the deviance of the model with var i alone explaining respvar
+        # get the deviance of the model with var i alone explaining the response variable
         if(length(grep(pattern = paste0("modalone_", explvar[i]), x = filist)) !=0){
           modalone <- readRDS(here::here(res_dir_elo, paste0("modalone_", explvar[i], ".rds")))
         }else{
@@ -167,7 +185,8 @@ look_dev <- function(dat, explvar, respvar, randomvar, ord, model_ini, proc){
         } # eo if
         
         sumalone     <- summary(modalone)
-        dev_varalone <- round(100 - (sumalone$AICtab[["deviance"]] / sumall$AICtab[["deviance"]] * 100), 3)
+        dev_varalone <- round(100 - (sumalone$AICtab[["deviance"]] /
+                                       sumall$AICtab[["deviance"]] * 100), 3)
 
     cbind(explvar[i], dev_minusvar, dev_varalone)
     
@@ -190,7 +209,7 @@ look_dev <- function(dat, explvar, respvar, randomvar, ord, model_ini, proc){
 #' opti_maxmatch
 #'function to find maxmatch
 #' @param data dataframe with two columns at least: Winner and Loser
-#' @param minmatch the number of matches needed to have at least one match per challengers
+#' @param minmatch the number of matches needed to have at least one match per challenger
 #' @param stepelo the step of at which to search for the answer
 #'
 #' @return
@@ -223,42 +242,6 @@ opti_minmatch <- function(data, match_base = 500) {
   return(match_base)
 }
 
-#' Poster
-#' create a 2D poster with all the photo by order
-#' @param path_photo where to find th photos
-#' @param tab_image 
-#' @param nb_row 
-#' @param nb_col 
-#' @param output where to save the poster
-#'
-#' @return
-#' @export
-poster <- function(path_photo, tab_image, nb_row, nb_col, output){
-  
-  #compute the size of an image
-  image      <- jpeg::readJPEG(file.path(paste0(path_photo), tab_image[1]))
-  row_length <- dim(image[, , 1])[1]
-  col_length <- dim(image[, , 1])[2]
-  
-  #dimension of the output image
-  outputImage <- array(1,dim = c((nb_row * row_length), (nb_col * col_length), 3))
-  
-  #create the output image
-  pos = 0
-  for (i in 1:nb_row){
-    for (j in 1:nb_col){
-      pos = pos+1
-      if (pos <= length(tab_image)){
-        path_image <- file.path(paste0("/",path_photo), tab_image[pos])
-        image      <- jpeg::readJPEG(path_image)
-        outputImage[(1 + (i-1)*row_length):(row_length+(i-1)*row_length),
-                    (1+(j-1)*col_length):(col_length+(j-1)*col_length), ] <- image
-      } # eo if pos
-    } # eo for j
-  } # eo for i
-  #save the outputimage
-  jpeg::writeJPEG(outputImage, output)
-} # eo poster
 
 #' reduce_mod
 #' reduces a model by removing the non-significant variables
@@ -272,7 +255,8 @@ poster <- function(path_photo, tab_image, nb_row, nb_col, output){
 #'
 reduce_mod <- function(var_list, respvar, randomvar, dat, thr){
   
-  # var_list = var_order; respvar = "wins"; randomvar = "challenger_1"; dat = table_elo_judge; thr = 0.05
+  # var_list = var_order; respvar = "wins"; randomvar = "challenger_1";
+  # dat = table_elo_judge; thr = 0.05
   
   if(length(var_list) == 0) stop("No more variables")
   
@@ -282,8 +266,9 @@ reduce_mod <- function(var_list, respvar, randomvar, dat, thr){
   randomform <- paste0(randomform, collapse = "+")
   
   # Model with all the variable of var_list
-  mod_full                   <- lme4::glmer(as.formula(paste(respvar," ~ ", paste(var_list, collapse = "+"), "+", randomform)),
-                                            family = binomial, data = dat, na.action = na.fail) 
+  mod_full                   <- lme4::glmer(as.formula(
+    paste(respvar," ~ ", paste(var_list, collapse = "+"), "+", randomform)),
+    family = binomial, data = dat, na.action = na.fail) 
   
   saveRDS(mod_full, here::here(res_dir_elo, "02_temp_fullmod.rds"))
   mod_full <- readRDS(here::here(res_dir_elo, "02_temp_fullmod.rds"))
@@ -295,10 +280,13 @@ reduce_mod <- function(var_list, respvar, randomvar, dat, thr){
   var_test <- rownames(mod_full_anov_coeff_sorted)[1]
   
   # test if the model without var_test is significantly different from the previous one.
-  # anova (mod2, mod1, test = "Chisq") ==> H0 = mod2 is significantly different from mod1. Use only if mod1 and mod2 are nested models
+  # anova (mod2, mod1, test = "Chisq") ==> H0 = mod2 is significantly different from mod1. 
+  # Use only if mod1 and mod2 are nested models
   # if p-value > 0.05 H0 is rejected at the risk 5%
-  modminus <- lme4::glmer(as.formula(paste(respvar," ~ ", paste(var_list[-which(var_list == var_test)], collapse = "+"),
-                                           "+", randomform)), family = binomial, data = dat, na.action = na.fail) 
+  modminus <- lme4::glmer(as.formula(
+    paste(respvar," ~ ", 
+          paste(var_list[-which(var_list == var_test)], collapse = "+"),
+          "+", randomform)), family = binomial, data = dat, na.action = na.fail) 
   chi_test <- anova(modminus, mod_full, test = "Chisq")
   
   if(chi_test$`Pr(>Chisq)`[2] > thr) {

@@ -33,7 +33,7 @@ all_table  <- read.csv(here::here(res_dir_deep, "02_esthe_focus.csv"))
                    axis.text = ggplot2::element_text(size = 8, family = "serif"),
                    axis.title = ggplot2::element_text(size = 10, family = "serif")) +
     ggplot2::geom_vline(xintercept = mean(count$Freq), lty = "dashed", col = "red") +
-    ggplot2::labs(x = "Number of pictures by species", y = "Freq") 
+    ggplot2::labs(x = "Number of images per species", y = "Number of images") 
   
   ggplot2::ggsave(plot = plot_2,
                   filename = here::here("figures_tables", "FIGURE_S16.jpg"), 

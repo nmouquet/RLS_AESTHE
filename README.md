@@ -1,8 +1,6 @@
 # RLS_AESTHE
 
-Research compendium to reproduce analyses and figures of the following article: "Biases in the aesthetic value of the world’s reef fishes in relation to ecological traits, phylogeny and conservation status Langlois et al. & Mouquet." Submitted to Nature Communication.
-
-R code and data to reproduce figures and tables of main text and appendices of Langlois et al.'s &amp; Mouquet XXXX article 
+Research compendium to reproduce analyses and figures of the following article: "Global mismatch between the aesthetic value of reef fishes and their conservation priorities." Langlois et al. & Mouquet. Submitted to Nature Communication.
 
 ## General
 
@@ -15,13 +13,13 @@ This repository is structured as follow:
     
 ## Storage
 
-Not all fish images are free of copyrights. We thus provide a example sample of images in `data/example_imgaes/`. The codes calling all images will show errors but you can use the example images set to run them. See Extended table 1 for copyrights. 
+Not all fish images are free of copyrights. We thus provide a example sample of images in `data/example_images/`. The codes calling all images will show errors but you can use the example images set to run them. See Extended Table 1 (provided as a supplementary information) for copyrights. 
 
 The script `analyses/elo/01_group_effect.R` normally generates and use a large file: 01_first_model.RData . It takes several days to generate this file but you can instead download it from https://zenodo.org/record/5052745#.YN2DpW46_LY (see lines 257-258 of script).
 
 ## File with all results  
 
-The file results/conservation/01_sptable_fishery.csv contains all the information used and produced in this study at the species level for the 2417 species concerned. You are welcome to use it by citing properly our work, but even more welcolme to contact us if you want to collaborate :) 
+The file results/conservation/01_sptable_fishery.csv contains all the information used and produced in this study at the species level for the 2417 species concerned. You are welcome to use it by citing properly our work, but even more welcome to contact us (nicolas.mouquet@@cnrs.fr) if you want to collaborate :) 
     
 ## Figures and Tables
 

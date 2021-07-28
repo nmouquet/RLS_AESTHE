@@ -1,7 +1,7 @@
 ################################################################################################
 #' Phylogenetic diversity
 #'
-#'This script produces the background of Figure 4, Figure S13, Figure S14 and Table S2 of the 
+#'This script produces the background of Fig. 4, Fig. S13, Fig. S14 and Table S2 of the 
 #'Langlois et al. & Mouquet 2021 paper.
 #'
 #'@author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
@@ -87,7 +87,7 @@
                                            mode   = "numeric"),
                           percent = vector(length = length(levels(species_table$family)),
                                            mode   = "numeric"))
-  # In the entire family and in our dataset
+  # In the entire family and in our data set
   for(i in 1:nrow(nb_sp_fam)){
     nb_sp_fam$oursp[i] <- length(species_table$sp_name[which(species_table$family ==
                                                              nb_sp_fam$family[i])])
@@ -349,10 +349,13 @@
   
 # Create Esthe classes and the matrix of species in Esthe class ----
   
-  phylo_table       <- phylo_table[order(phylo_table$esthe_score),] # order according to esthe score
+  # order according to esthe score
+  phylo_table       <- phylo_table[order(phylo_table$esthe_score),]
   nb_split          <- 10 # 10 classes
+  
   # define the classes range
-  splits            <- split(phylo_table$sp_name, Hmisc::cut2(phylo_table$esthe_score, g = nb_split))
+  splits            <- split(phylo_table$sp_name,
+                             Hmisc::cut2(phylo_table$esthe_score, g = nb_split))
   phylo_table$split <- unlist(lapply(1:nb_split, function(x, spl = splits){
     split <- rep(x, length = length(spl[[x]]))
     split
@@ -397,7 +400,9 @@
   nb_sp_fam     <- read.csv(here::here(res_dir_biodiversity, "01_nb_sp_fam.csv"))
   
   for(i in 1:nrow(species_table)){
-      species_table$nbsp[i] <- as.character(nb_sp_fam$oursp[which(nb_sp_fam$family == as.character(species_table$family)[i])])
+      species_table$nbsp[i] <- 
+        as.character(nb_sp_fam$oursp[
+          which(nb_sp_fam$family == as.character(species_table$family)[i])])
   }
   species_table$famnb <- paste0(species_table$family, " (", species_table$nbsp, ")")
     
@@ -445,7 +450,9 @@
                    panel.grid.minor = ggplot2::element_blank(),
                    axis.title = ggplot2::element_text(family = "serif"),
                    axis.text  = ggplot2::element_text(family = "serif"),
-                   axis.text.y = ggplot2::element_text(face = "italic", family = "serif", size = 6.5)) +
+                   axis.text.y = ggplot2::element_text(face   = "italic", 
+                                                       family = "serif",
+                                                       size   = 6.5)) +
     ggplot2::xlab("Families") +
     ggplot2::ylab("Aesthetic value") +
     ggplot2::geom_text(inherit.aes = FALSE, data = Tukey.labels, family = "serif",
