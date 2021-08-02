@@ -8,7 +8,7 @@ This repository is structured as follow:
 
 - `data/`: contains data required to reproduce figures and tables
 - `R/`: contains R functions developed for this project
-- `analyses/`: contains folders organized theme.Each folder contains R scripts
+- `analyses/`: contains folders organized by theme. Each folder contains R scripts
 - `results/`: follows the structure of analyses. Contains intermediate results and the numeric results used to produce the figures.
     
 ## Storage
@@ -19,7 +19,7 @@ The script `analyses/elo/01_group_effect.R` normally generates and use a large f
 
 ## File with all results  
 
-The file results/conservation/01_sptable_fishery.csv contains all the information used and produced in this study at the species level for the 2417 species concerned. You are welcome to use it by citing properly our work, but even more welcome to contact us (nicolas.mouquet@@cnrs.fr) if you want to collaborate :) 
+The file results/conservation/01_sptable_fishery.csv contains all the information used and produced in this study at the species level for the 2417 species concerned. You are welcome to use it by citing properly our work, but even more welcome to contact us (nicolas.mouquet@cnrs.fr) if you want to collaborate :) 
     
 ## Figures and Tables
 
@@ -43,7 +43,6 @@ The following Figures and Tables can be reproduced with the script indicated in 
 - Figure S9  (`elo/02_elo_scores.R`)
 - Figure S10 (`elo/02_elo_scores.R`)
 - Figure S11 (`deep/01_size_effect.R`)
-- Figure S12
 - Figure S13 (`biodiversity/01_phylogeny.R`)
 - Figure S14 (`biodiversity/01_phylogeny.R`)
 - Figure S15 (`biodiversity/02_functional_div.R`)
@@ -54,7 +53,7 @@ The following Figures and Tables can be reproduced with the script indicated in 
       
 - Table S1 (`elo/01_group_effect.R`)
 - Table S2 (`biodiversity/01_phylogeny.R`)
-- Table S4
+- Table S4 (`biodiversity/02_functional_div.R`)
 
 - Extended Table 2 (`deep/03_aggregate_species_level.R`)
 
