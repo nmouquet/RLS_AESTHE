@@ -1,3 +1,18 @@
+'''
+Size effect
+
+This script trains different networks (resnet18 - resnet50) with different image sizes
+(32 - 64 - 128 - 224 - 256 - 512) to find the optimal combination
+
+
+authors : Juliette Langlois <juliette.a.langlois@gmail.com>
+          Nicolas Mouquet <nicolas.mouquet@cnrs.fr>
+          Cedric Braga <cedric.braga@hotmail.fr>
+          Valentine Fleuré <valentine.fleure@gmail.com>
+
+date : 2021/07/30
+'''
+
 #Misc librairies
 import csv
 import os
@@ -131,6 +146,7 @@ train.to_csv(train_path, index = False)
 val.to_csv(val_path, index = False)
 test.to_csv(test_path, index = False)
 
+# Hyperparameters
 learning_rate = 1e-1
 batch_size = 4
 num_epochs = 50
@@ -214,8 +230,8 @@ for model_name in ['resnet18', 'resnet50']:
             y_pred = y_pred.cpu().numpy().flatten()
 
             print("R2 = ", r2_score(y_true,y_pred))
-            R2_size.append(r2_score(y_true,y_pred)) # On rajoute le R2 du réseau n de la taille size
-        R2_model.append(R2_size) # On rajoute les 5 R2 des réseaux pour la taille size
+            R2_size.append(r2_score(y_true,y_pred)) 
+        R2_model.append(R2_size)
 
     result_file = str(Path('../../results/deep/') / ('01_' + model_name + '.csv'))
     with open(result_file, 'w', newline='') as csvfile:

@@ -1,3 +1,17 @@
+'''
+Train
+
+This script trains one network using all images and save the weight
+
+
+authors : Juliette Langlois <juliette.a.langlois@gmail.com>
+          Nicolas Mouquet <nicolas.mouquet@cnrs.fr>
+          Cedric Braga <cedric.braga@hotmail.fr>
+          Valentine Fleuré <valentine.fleure@gmail.com>
+
+date : 2021/07/30
+'''
+
 #Misc librairies
 import csv
 import os

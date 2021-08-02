@@ -1,3 +1,19 @@
+'''
+Inference
+
+This script infers the aesthetic value of all images. If several weights are 
+available the most recent one will be chosen 
+
+
+authors : Juliette Langlois <juliette.a.langlois@gmail.com>
+          Nicolas Mouquet <nicolas.mouquet@cnrs.fr>
+          Cedric Braga <cedric.braga@hotmail.fr>
+          Valentine Fleuré <valentine.fleure@gmail.com>
+
+date : 2021/07/30
+'''
+
+#Misc librairies
 import os
 import glob
 import multiprocessing
