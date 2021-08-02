@@ -18,7 +18,7 @@
 
   all_table   <- read.csv(here::here(res_dir_elo, "02_esthe_focus.csv"))
   learn_table <- read.csv(here::here(res_dir_elo, "02_deep_train.csv"))
-  pred_table  <- read.csv(here::here(res_dir_deep, "00_esthe_pred50.csv"))
+  pred_table  <- read.csv(here::here(res_dir_deep, "04_esthe_pred50.csv"))
   
   # variation of the MSE across the epochs
   run1 <- read.csv(here::here(res_dir_deep, "training", "run1.csv"), header = FALSE)
@@ -136,7 +136,7 @@
     
 # Add predicted score to the table with everything and save
   all_table <- merge(all_table, scores_table, by = "name_worms")
-  write.csv(all_table, here::here(res_dir_deep, "02_esthe_focus.csv"), row.names = FALSE)
+  write.csv(all_table, here::here(res_dir_deep, "06_esthe_focus.csv"), row.names = FALSE)
 
 # ----
 

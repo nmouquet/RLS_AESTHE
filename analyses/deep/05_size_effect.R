@@ -12,8 +12,8 @@
 
 # Load ----
 
-  resnet18 <- read.csv(here::here(res_dir_deep, "00_size_effect_ResNet18.csv"), sep = ";")
-  resnet50 <- read.csv(here::here(res_dir_deep, "00_size_effect_ResNet50.csv"), sep = ";")
+  resnet18 <- read.csv(here::here(res_dir_deep, "01_resnet18.csv"), sep = ";")
+  resnet50 <- read.csv(here::here(res_dir_deep, "01_resnet50.csv"), sep = ";")
 
 # ----
 
