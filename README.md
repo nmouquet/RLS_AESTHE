@@ -1,6 +1,6 @@
 # RLS_AESTHE
 
-Research compendium to reproduce analyses and figures of the following article: "Global mismatch between the aesthetic value of reef fishes and their conservation priorities." Langlois et al. & Mouquet. Submitted to Nature Communication.
+Research compendium to reproduce analyses and figures of the following article: "Global mismatch between the aesthetic value of reef fishes and their conservation priorities." Langlois et al. & Mouquet. Submitted to Science Advances.
 
 ## General
 
