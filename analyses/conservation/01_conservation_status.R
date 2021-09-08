@@ -139,7 +139,7 @@ source(here::here("R", "functions_cons.R"))
   
   species_table <- merge(species_table, fishery_table[, c("sp_name", "Importance", "fishery_importance")], by = "sp_name")
   
-  write.csv(species_table, file = here::here(res_dir_conservation, "01_sptable_fishery.csv"), row.names = FALSE)
+  write.csv(species_table, file = here::here(res_dir_conservation, "01_sptable_all.csv"), row.names = FALSE)
   
   rm(highcom, com, nocom, i, subsfish)
   
