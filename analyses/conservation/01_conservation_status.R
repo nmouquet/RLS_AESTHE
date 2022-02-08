@@ -56,7 +56,9 @@ source(here::here("R", "functions_cons.R"))
   
   thr  <- c("CR", "VU", "EN")
   nthr <- c("LC", "LR/lc", "NT")
-  nev  <- c("NE", "DD")
+  #nev  <- c("NE", "DD")
+  nev  <- "NE"
+  dd  <- "DD"
   
   species_table$threats <- vector(length = nrow(species_table))
   
@@ -65,11 +67,12 @@ source(here::here("R", "functions_cons.R"))
     if(species_table$iucn_code[i] %in% thr) {species_table$threats[i] <- "thr"}
     if(species_table$iucn_code[i] %in% nthr){species_table$threats[i] <- "nthr"}
     if(species_table$iucn_code[i] %in% nev) {species_table$threats[i] <- "nev"}
+    if(species_table$iucn_code[i] %in% dd) {species_table$threats[i] <- "dd"}
   }
   
   rm(thr, nthr, nev, i)
   
-  species_table$threats <- factor(species_table$threats,c("thr", "nthr", "nev"))
+  species_table$threats <- factor(species_table$threats,c("thr", "nthr", "nev", "dd"))
   
   write.csv(species_table, file = here::here(res_dir_conservation, "01_sp_table_cons.csv"), row.names = FALSE)
   
@@ -147,7 +150,10 @@ source(here::here("R", "functions_cons.R"))
   
 # FIGURE 5 panel a ----
   
-  species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_fishery.csv"))
+  species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_all.csv"))
+  
+  #species_table <- species_table[species_table$threats!='dd',]
+  
   
 # Ordering by esthe_score median
   new_order_fac    <- with(species_table, tapply(esthe_score, threats, median))
@@ -252,7 +258,7 @@ source(here::here("R", "functions_cons.R"))
   
   ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_5.jpg"),
                   plot = gridExtra::grid.arrange(a, b, nrow = 2), 
-                  width = 10, height = 16, units = "cm", dpi = 600, family = "serif")
+                  width = 10, height = 16, units = "cm", dpi = 600)
   
 # ----
   
