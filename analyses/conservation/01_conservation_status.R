@@ -201,6 +201,24 @@ source(here::here("R", "functions_cons.R"))
   
 #----
   
+# Comparing evaluated and not evaluated IUCN categories----
+  
+  species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_all.csv"))
+  
+  #remove the Datadeficient species
+  species_table <- species_table[species_table$threats!='dd',]
+  
+  iucn_table <- species_table[,c("esthe_score","threats")]
+  iucn_table$evaluated <- "eval"
+  iucn_table$evaluated[iucn_table$threats=="nev"]="not_eval"
+  
+  model <- lm(esthe_score ~ evaluated, data = iucn_table)
+  summary(model)
+  summary(aov(model))
+  
+  
+#----
+  
 # FIGURE5 panel b----
   
   species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_all.csv"))

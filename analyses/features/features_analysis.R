@@ -26,7 +26,7 @@ pathresults <- here::here("results","features")
   momocs <- momocs[,-1]
   rownames(momocs) <- momocs$name
   
-  esthe_focus_images <- read.csv(here::here("results","deep", "02_esthe_focus.csv"))
+  esthe_focus_images <- read.csv(here::here("results","deep", "06_esthe_focus.csv"))
   rownames(esthe_focus_images) <- esthe_focus_images$name_worms
   
   tmp12 <- merge(cluster, lumsat, by=0, all=T)
@@ -58,7 +58,7 @@ pathresults <- here::here("results","features")
   
 #end----  
   
-####Multiple linear regression FIGURE 3---- 
+####Multiple linear regression FIGURE 2---- 
 
   varcor="esthe_pred"
 
@@ -170,8 +170,17 @@ pathresults <- here::here("results","features")
     data_plot$pos <- NA
     
     for (i in 1:length(data_plot$pos)) {if (data_plot$Estimate[i]<0) data_plot$pos[i]=10 else data_plot$pos[i]=-35}
-  
+
+    
+    
   #FIGURE 2a 
+    
+    
+    ##Change the names of the variables (see Text F in S1 File)
+    
+    data_plot$name <- c("Elongatedness","Pattern variation","Pattern asymmetry","Mean light","Morpho_2","Pattern repetition","SD light","Color saturation","Color heterogeneity")
+    
+    ##Draw the figure 
     library(ggplot2)
     theme_set(theme_bw())
     plot <-  ggplot(data_plot) +
@@ -187,14 +196,20 @@ pathresults <- here::here("results","features")
           xlab("Images Features") +
           ylab("Estimates (scaled)") +
           coord_flip() + 
-          geom_text(aes(x=name, y=pos,label = name),hjust = 0,size=4, family = "serif")
+          geom_text(aes(x=name, y=pos,label = name),hjust = 0,size=5, family = "serif")
       
       ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_2a.jpg"),
-                      plot, width = 14, height = 18, units = "cm", dpi = 600, family = "serif")
+                      plot, width = 14, height = 18, units = "cm", dpi = 600)
 
   #PCA ANALYSIS FIGURE 2b
     
     data_scale <-  cbind.data.frame(esthe_pred=datacor$esthe_pred, scale(datacor[,id_final]))
+    
+    ##Change the names of the variables (see Text F in S1 File)
+    
+    colnames(data_scale) <- c("esthe_pred","Color heterogeneity","SD light","Color saturation","Elongatedness",
+                              "Morpho_2","Mean light","Pattern repetition","Pattern asymmetry","Pattern variation")
+   
     pca_fish<-ade4::dudi.pca(data_scale[,-1], scannf=FALSE, nf = 5)
     
     factoextra::fviz_eig(pca_fish,main = "Eigenvalues")
