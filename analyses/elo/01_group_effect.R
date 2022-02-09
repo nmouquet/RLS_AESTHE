@@ -65,14 +65,14 @@
   hist_count <- ggplot2::ggplot(count_top, ggplot2::aes(x = reorder(Var1,-Freq),Freq)) +
     ggplot2::geom_bar(stat ="identity", position = "dodge", fill = "lightblue") +
     ggplot2::xlab("") +
-    ggplot2::ylab("Number of judges") +
+    ggplot2::ylab("Number of respondents") +
     ggplot2::theme_bw() +
     ggplot2::theme(legend.position = "none",
                    panel.grid = ggplot2::element_blank(),
                    panel.border = ggplot2::element_blank(),
                    axis.text = ggplot2::element_text(size = 10, family = "serif"),
                    axis.title = ggplot2::element_text(size = 12, family = "serif"))
-  ggplot2::ggsave(hist_count, filename = here::here("figures_tables", "Figure_S7a.jpg"), family = "serif")
+  ggplot2::ggsave(hist_count, filename = here::here("figures_tables", "Figure_S7a.jpg"))
 
 # Map of the number of judges per country (Figure S7b)
  
@@ -83,8 +83,8 @@
   jpeg(filename = here::here("figures_tables", "Figure_S7b.jpg"),width = 10, height = 10,
        units = "cm", res = 600, family = "serif")
   par(mar = c(1,1,1,1), family = "serif")
-  rworldmap::mapCountryData(mapToPlot = sPDF, nameColumnToPlot = "freqlog",
-                            catMethod = c(0:10), colourPalette = "heat",
+  rworldmap::mapCountryData(mapToPlot = sPDF, nameColumnToPlot = "Freq",
+                            catMethod = c(0:8000), colourPalette = "heat",
                             missingCountryCol = 'gray90', addLegend = TRUE,
                             mapTitle = "", oceanCol = "lightblue")
   dev.off()
@@ -126,6 +126,10 @@
                                  "frequency_nature", "knowledge_fish")]
   newjudge <- unique(newjudge)
   
+  colnames(newjudge) <- c("judge_id", "Gender", "Age", "Highest_level_of_education", "Experience_with_diving",
+                         "Experience_with_spearfishing","Aquarium", "Actual_place_of_living", "Distance_from_the_ocean",
+                         "Frequency_of_exposure_to_nature", "Knowledge_of_coral_reef_fishes")
+  
   lplot <- list()
   j     <- 1
   
@@ -140,7 +144,7 @@
     name  <- colnames(newjudge)[i]
     par(mar = c(2,2,2,3))
     
-    if(name == "age"){
+    if(name == "Age"){
       plot <- ggplot2::ggplot(count, ggplot2::aes(y = Freq, x = Var1)) +
         ggplot2::geom_bar(position = "dodge", stat = "identity", ggplot2::aes(fill = Freq)) +
         ggplot2::coord_flip() +
@@ -181,7 +185,7 @@
   
   ggplot2::ggsave(file = here::here("figures_tables", "FIGURE_S8.jpg"),
                   gridExtra::arrangeGrob(grobs = lplot, ncol = 5),
-                  width = 26, height = 26, units = "cm", family = "serif")
+                  width = 26, height = 26, units = "cm")
   
   rm(plot, lplot, i, j, name, count, judge)
 

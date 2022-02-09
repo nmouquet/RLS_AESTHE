@@ -45,7 +45,7 @@ source(here::here("R", "functions_cons.R"))
   
 # ----
   
-# Group IUCN classes into three groups ----
+# Group IUCN classes into four groups ----
   
   # threatened, non threatened and not evaluated 
   species_table$iucn_code <- toupper(species_table$iucn_code)
@@ -152,8 +152,8 @@ source(here::here("R", "functions_cons.R"))
   
   species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_all.csv"))
   
-  #species_table <- species_table[species_table$threats!='dd',]
-  
+  #remove the Datadeficient species
+  species_table <- species_table[species_table$threats!='dd',]
   
 # Ordering by esthe_score median
   new_order_fac    <- with(species_table, tapply(esthe_score, threats, median))
@@ -202,6 +202,8 @@ source(here::here("R", "functions_cons.R"))
 #----
   
 # FIGURE5 panel b----
+  
+  species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_all.csv"))
   
   fishery_table <- species_table[,c("sp_name", "esthe_score", "fishery_importance")]
   
@@ -264,7 +266,10 @@ source(here::here("R", "functions_cons.R"))
   
 # SUPPLEMENTARY FIGURE 19 ----
   
-  species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_fishery.csv"))
+  species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_all.csv"))
+  
+  #remove the Datadeficient species
+  species_table <- species_table[species_table$threats!='dd',]
   
 # Panel a
   
@@ -315,6 +320,7 @@ source(here::here("R", "functions_cons.R"))
   
 # Panel b
   
+  species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_all.csv"))
   fishery_table <- species_table[,c("sp_name", "esthe_score_mean", "fishery_importance")]
   
   fishery_table$fishery_importance <- as.factor(fishery_table$fishery_importance)
@@ -370,7 +376,7 @@ source(here::here("R", "functions_cons.R"))
   
   ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S19.jpg"),
                   plot = gridExtra::grid.arrange(a, b, nrow = 2), 
-                  width = 10, height = 16, units = "cm", dpi = 600, family = "serif")
+                  width = 10, height = 16, units = "cm", dpi = 600)
   
   
 #----
