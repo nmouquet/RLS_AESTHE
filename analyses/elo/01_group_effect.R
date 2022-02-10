@@ -222,7 +222,6 @@
     geom_density( fill="dodgerblue", alpha=0.5)+
     labs(x="Number of matches per images")+
     geom_vline(xintercept=nb_matche, size=1.5, color="red")+
-    geom_text(aes(x=mean_salary+60000, label=paste0("Mean\n",mean_salary), y=1.9))
   
   
 
