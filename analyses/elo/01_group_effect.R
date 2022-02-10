@@ -206,6 +206,25 @@
     table_elo_judge$challenger_1),table_elo_judge$wins <- 1, table_elo_judge$wins <- 0)
 
   rm(matches)
+  
+# number of matches per images 
+  
+  images_list <- unique(table_elo_judge$challenger_1)
+  
+  match_dat <- do.call(rbind,parallel::mclapply(images_list, function(id){
+    data.frame(images=id,nb_matche=dim(table_elo_judge[table_elo_judge$challenger_1==id,])[1])
+  },mc.cores = 7))
+  
+  densityplot(match_dat$nb_matche)
+  
+  match_dat %>% 
+    ggplot(aes(x=nb_matche)) +
+    geom_density( fill="dodgerblue", alpha=0.5)+
+    labs(x="Number of matches per images")+
+    geom_vline(xintercept=nb_matche, size=1.5, color="red")+
+    geom_text(aes(x=mean_salary+60000, label=paste0("Mean\n",mean_salary), y=1.9))
+  
+  
 
 # ----
 
