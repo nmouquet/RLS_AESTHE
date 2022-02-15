@@ -101,14 +101,14 @@ files_path <- list.files(pathphoto_mask, full = T)
   
 #---- 
   
-#EXEMPLE WITH THE BASIC FUNCTIONS FIGURE S4a----
+#EXEMPLE WITH THE BASIC FUNCTIONS FIGURE S1 D----
   
   #Returns shapes centered on the origin. 
     coo <- load_mask(mask.list=files_path)
   
   #Visualisation of species fourier transformation and species position
   #on the two first axis of a PCOA based on fourier transformation
-  #FIGURE S4a
+  #FIGURE S1 D
   
     visu(coo=coo,f=15,n_im=3,w_plot="species")
 

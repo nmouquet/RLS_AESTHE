@@ -51,7 +51,7 @@
 # ----
 
 # World map to vizualize number of answers by country
-# (FIGURE S7) ----
+# (FIGURE S1 G) ----
 
   judge <- table_elo_judge[,c("judge_id", "country")]
   judge <- unique(judge)
@@ -61,7 +61,7 @@
   count_top <- count[which(count$Freq >= 100),]
   
 # Histogram of the number of judges per country for the countries with 100 judges or more
-# Figure S7a
+# Figure S1 Ga
   hist_count <- ggplot2::ggplot(count_top, ggplot2::aes(x = reorder(Var1,-Freq),Freq)) +
     ggplot2::geom_bar(stat ="identity", position = "dodge", fill = "lightblue") +
     ggplot2::xlab("") +
@@ -72,15 +72,15 @@
                    panel.border = ggplot2::element_blank(),
                    axis.text = ggplot2::element_text(size = 10, family = "serif"),
                    axis.title = ggplot2::element_text(size = 12, family = "serif"))
-  ggplot2::ggsave(hist_count, filename = here::here("figures_tables", "Figure_S7a.jpg"))
+  ggplot2::ggsave(hist_count, filename = here::here("figures_tables", "Figure_SGa.jpg"))
 
-# Map of the number of judges per country (Figure S7b)
+# Map of the number of judges per country (Figure S1 Gb)
  
    #join data to a map to create a spatialPolygonsDataFrame
   count$freqlog <- log(count$Freq)
   sPDF          <- rworldmap::joinCountryData2Map(count, joinCode = 'ISO3', nameJoinColumn = 'Var1')
 
-  jpeg(filename = here::here("figures_tables", "Figure_S7b.jpg"),width = 10, height = 10,
+  jpeg(filename = here::here("figures_tables", "Figure_SGb.jpg"),width = 10, height = 10,
        units = "cm", res = 600, family = "serif")
   par(mar = c(1,1,1,1), family = "serif")
   rworldmap::mapCountryData(mapToPlot = sPDF, nameColumnToPlot = "Freq",
@@ -119,7 +119,7 @@
 # ----
 
 # Number of aswers per category for each variable 
-# (FIGURE S8) ----
+# (FIGURE S1 H) ----
 
   newjudge <- table_elo_judge[,c("judge_id", "gender", "age", "education", "scuba_diving",
                                  "fishing_spearing","aquarium", "place", "distance_sea",
@@ -183,7 +183,7 @@
   
   } #eo for i
   
-  ggplot2::ggsave(file = here::here("figures_tables", "FIGURE_S8.jpg"),
+  ggplot2::ggsave(file = here::here("figures_tables", "FIGURE_H.jpg"),
                   gridExtra::arrangeGrob(grobs = lplot, ncol = 5),
                   width = 26, height = 26, units = "cm")
   
@@ -211,16 +211,18 @@
   
   images_list <- unique(table_elo_judge$challenger_1)
   
+
+  images_list <- images_list[images_list %in% eval_pred$name]
+  dim(table_elo_judge[table_elo_judge$challenger_1 %in% images_list,])
+  
+  
   match_dat <- do.call(rbind,parallel::mclapply(images_list, function(id){
     data.frame(images=id,nb_matche=dim(table_elo_judge[table_elo_judge$challenger_1==id,])[1])
   },mc.cores = 7))
   
+  mean(match_dat$nb_matche)
+  sd(match_dat$nb_matche)
   densityplot(match_dat$nb_matche)
-  
-  match_dat %>% 
-    ggplot(aes(x=nb_matche)) +
-    geom_density( fill="dodgerblue", alpha=0.5)+
-    labs(x="Number of matches per images")
   
 
 # ----

@@ -17,7 +17,7 @@
 
 # ----
 
-# Mean performance for each size (Figure S11) ----
+# Mean performance for each size (Figure 1 K) ----
   
   mean18 <- data.frame(Size = unique(resnet18$Size), Rsquared = vector(length = 6))
   for(i in 1:nrow(mean18)){
@@ -70,7 +70,7 @@
   
 # Save plot
   ggplot2::ggsave(plot = plot, family = "serif", units = "cm", width = 15, height = 15, dpi = 600,
-                  filename = here::here("figures_tables", "FIGURE_S11.jpg"))
+                  filename = here::here("figures_tables", "FIGURE_K.jpg"))
   
   rm(resnet18, resnet50, mean18, mean50, pal, plot, mean_perf)
 # ----

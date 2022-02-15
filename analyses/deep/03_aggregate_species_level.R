@@ -18,7 +18,7 @@ all_table  <- read.csv(here::here(res_dir_deep, "02_esthe_focus.csv"))
 # ----
 
 # Histogram of the number of pictures by species
-# (Figure S16) ----
+# (Figure S1 Q) ----
   # Number of pictures by species
   count <- as.data.frame(table(all_table$sp_worms))
   
@@ -36,7 +36,7 @@ all_table  <- read.csv(here::here(res_dir_deep, "02_esthe_focus.csv"))
     ggplot2::labs(x = "Number of images per species", y = "Number of images") 
   
   ggplot2::ggsave(plot = plot_2,
-                  filename = here::here("figures_tables", "FIGURE_S16.jpg"), 
+                  filename = here::here("figures_tables", "FIGURE_Q.jpg"), 
                   width = 10, height = 8, units = "cm", dpi = 600, family = "serif")
 # ----
 
@@ -73,7 +73,7 @@ all_table  <- read.csv(here::here(res_dir_deep, "02_esthe_focus.csv"))
 # ----
   
 # Plot max values vs mean values
-# (Figure S17)----
+# (Figure S1 R)----
   
   plot <-
     ggplot2::ggplot(species_table, 
@@ -95,8 +95,8 @@ model <- lm(esthe_score_mean~esthe_score, data = species_table)
 summary(model) 
 
 ggplot2::ggsave(plot = plot,
-                filename = here::here("figures_tables", "FIGURE_S17.jpg"), 
-                width = 10, height = 8, units = "cm", dpi = 600, family = "serif")
+                filename = here::here("figures_tables", "FIGURE_R.jpg"), 
+                width = 10, height = 8, units = "cm", dpi = 600,)
  
 # ----
   

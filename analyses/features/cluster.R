@@ -246,7 +246,7 @@ files_focus <- paste0(focus_images,".png")
   
 #----  
   
-#EXEMPLE WITH THE BASIC FUNCTIONS FIGURE S2----
+#EXEMPLE WITH THE BASIC FUNCTIONS FIGURE S1 B----
   
   get_id(name="Holacanthus_ciliaris_J_1",files=files)
   
@@ -257,12 +257,12 @@ files_focus <- paste0(focus_images,".png")
 
   cluster_stat(cluster_raw=raw_data,n_im=n_im,clust=clust)
   
-  ##FIGURE S2
+  ##FIGURE S1 B
   plot <- cluster.lab.plot(n_im=n_im,clust=clust,lg_sz=8,FISH=TRUE)
   
-  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S2.jpg"),
+  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_B.jpg"),
                   plot = plot, 
-                  width = 18, height = 24, units = "cm", dpi = 600, family = "serif")
+                  width = 18, height = 24, units = "cm", dpi = 600)
   
 
 #----

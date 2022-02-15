@@ -96,7 +96,7 @@
   
   perfplot <-
     ggplot2::ggplot(data = val_all, ggplot2::aes(x = evaluated_score, y = predicted_score, col = set)) + 
-    ggplot2::geom_point(size = 3.5, shape = 20, alpha = 0.8) + 
+    ggplot2::geom_point(size = 2, shape = 20, alpha = 0.8) + 
     ggplot2::theme_light() + 
     ggplot2::geom_smooth(method = "lm", se = TRUE, col = "black", lty = "solid", alpha = 0.80) + 
     ggplot2::expand_limits(x = range(val_all$predicted_score), y = range(val_all$predicted_score)) +
@@ -111,7 +111,6 @@
                    axis.text  = ggplot2::element_text(size = 9, family = "serif"),
                    panel.grid = ggplot2::element_blank(),
                    legend.position = "none")
-  
 # ----
   
 # Clean data ----
@@ -140,6 +139,149 @@
 
 # ----
 
+# Predicted score VS the evaluated (FIGURE S1 M) -----
+#(for five folds cross validation and the 481 images used in the questionaires)  
+  
+  textsize <- 2
+  axissize1 <- 8
+  axissize2 <- 4
+  
+  perfplot_val1 <-
+    ggplot2::ggplot(data = val1, ggplot2::aes(x = evaluated_score, y = predicted_score)) + 
+    ggplot2::geom_point(size = 2, shape = 20, alpha = 0.8,col=1) + 
+    ggplot2::theme_light() + 
+    ylim(1150, 1750)+xlim(1150, 1800)+
+    ggplot2::geom_smooth(method = "lm", se = TRUE, col = "black", lty = "solid", alpha = 0.80) + 
+    ggplot2::expand_limits(x = range(val1$predicted_score), y = range(val1$predicted_score)) +
+    ggplot2::xlab("Evaluated aesthetic values") + 
+    ggplot2::ylab("Predicted aesthetic values") +
+    ggplot2::annotate(geom="text", x=1150, y=1750, label=paste0("a) Cross-validation fold #1 (n=",dim(val1)[1],")"),
+                      color="black",hjust=0,size=textsize)+
+    ggplot2::scale_color_manual(values =  wes_palette("Darjeeling1")) +
+    #ggplot2::scale_x_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    #ggplot2::scale_y_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    ggplot2::theme(axis.title = ggplot2::element_text(size = axissize1, family = "serif"),
+                   axis.text  = ggplot2::element_text(size = axissize2, family = "serif"),
+                   panel.grid = ggplot2::element_blank(),
+                   legend.position = "none")
+  
+  perfplot_val2 <-
+    ggplot2::ggplot(data = val2, ggplot2::aes(x = evaluated_score, y = predicted_score)) + 
+    ggplot2::geom_point(size = 2, shape = 20, alpha = 0.8,col=2) + 
+    ggplot2::theme_light() +  
+    ylim(1150, 1750)+xlim(1150, 1800)+
+    ggplot2::geom_smooth(method = "lm", se = TRUE, col = "black", lty = "solid", alpha = 0.80) + 
+    ggplot2::expand_limits(x = range(val2$predicted_score), y = range(val2$predicted_score)) +
+    ggplot2::xlab("Evaluated aesthetic values") + 
+    ggplot2::ylab("Predicted aesthetic values") +
+    ggplot2::annotate(geom="text", x=1150, y=1750, label=paste0("b) Cross-validation fold #2 (n=",dim(val2)[1],")"),
+                      color="black",hjust=0,size=textsize)+
+    ggplot2::scale_color_manual(values =  wes_palette("Darjeeling1")) +
+    #ggplot2::scale_x_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    #ggplot2::scale_y_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    ggplot2::theme(axis.title = ggplot2::element_text(size = axissize1, family = "serif"),
+                   axis.text  = ggplot2::element_text(size = axissize2, family = "serif"),
+                   panel.grid = ggplot2::element_blank(),
+                   legend.position = "none")
+  
+  perfplot_val3 <-
+    ggplot2::ggplot(data = val3, ggplot2::aes(x = evaluated_score, y = predicted_score)) + 
+    ggplot2::geom_point(size = 2, shape = 20, alpha = 0.8,col=3) + 
+    ggplot2::theme_light() +  
+    ylim(1150, 1750)+xlim(1150, 1800)+
+    ggplot2::geom_smooth(method = "lm", se = TRUE, col = "black", lty = "solid", alpha = 0.80) + 
+    ggplot2::expand_limits(x = range(val3$predicted_score), y = range(val3$predicted_score)) +
+    ggplot2::xlab("Evaluated aesthetic values") + 
+    ggplot2::ylab("Predicted aesthetic values") +
+    ggplot2::annotate(geom="text", x=1150, y=1750, label=paste0("c) Cross-validation fold #3 (n=",dim(val3)[1],")"),
+                      color="black",hjust=0,size=textsize)+
+    ggplot2::scale_color_manual(values =  wes_palette("Darjeeling1")) +
+    #ggplot2::scale_x_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    #ggplot2::scale_y_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    ggplot2::theme(axis.title = ggplot2::element_text(size = axissize1, family = "serif"),
+                   axis.text  = ggplot2::element_text(size = axissize2, family = "serif"),
+                   panel.grid = ggplot2::element_blank(),
+                   legend.position = "none")
+  
+  perfplot_val4 <-
+    ggplot2::ggplot(data = val4, ggplot2::aes(x = evaluated_score, y = predicted_score)) + 
+    ggplot2::geom_point(size = 2, shape = 20, alpha = 0.8,col=4) + 
+    ggplot2::theme_light() +  
+    ylim(1150, 1750)+xlim(1150, 1800)+
+    ggplot2::geom_smooth(method = "lm", se = TRUE, col = "black", lty = "solid", alpha = 0.80) + 
+    ggplot2::expand_limits(x = range(val4$predicted_score), y = range(val4$predicted_score)) +
+    ggplot2::xlab("Evaluated aesthetic values") + 
+    ggplot2::ylab("Predicted aesthetic values") +
+    ggplot2::annotate(geom="text", x=1150, y=1750, label=paste0("d) Cross-validation fold #4 (n=",dim(val4)[1],")"),
+                      color="black",hjust=0,size=textsize)+
+    ggplot2::scale_color_manual(values =  wes_palette("Darjeeling1")) +
+    #ggplot2::scale_x_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    #ggplot2::scale_y_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    ggplot2::theme(axis.title = ggplot2::element_text(size = axissize1, family = "serif"),
+                   axis.text  = ggplot2::element_text(size = axissize2, family = "serif"),
+                   panel.grid = ggplot2::element_blank(),
+                   legend.position = "none")
+  
+  perfplot_val5 <-
+    ggplot2::ggplot(data = val5, ggplot2::aes(x = evaluated_score, y = predicted_score)) + 
+    ggplot2::geom_point(size = 2, shape = 20, alpha = 0.8,col=5) + 
+    ggplot2::theme_light() +  
+    ylim(1150, 1750)+xlim(1150, 1800)+
+    ggplot2::geom_smooth(method = "lm", se = TRUE, col = "black", lty = "solid", alpha = 0.80) + 
+    ggplot2::expand_limits(x = range(val5$predicted_score), y = range(val5$predicted_score)) +
+    ggplot2::xlab("Evaluated aesthetic values") + 
+    ggplot2::ylab("Predicted aesthetic values") +
+    ggplot2::annotate(geom="text", x=1150, y=1750, label=paste0("e) Cross-validation fold #5 (n=",dim(val5)[1],")"),
+                      color="black",hjust=0,size=textsize)+
+    ggplot2::scale_color_manual(values =  wes_palette("Darjeeling1")) +
+    #ggplot2::scale_x_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    #ggplot2::scale_y_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    ggplot2::theme(axis.title = ggplot2::element_text(size = axissize1, family = "serif"),
+                   axis.text  = ggplot2::element_text(size = axissize2, family = "serif"),
+                   panel.grid = ggplot2::element_blank(),
+                   legend.position = "none")
+  
+  
+  eval_pred <- all_table[!is.na(all_table$esthe_all),]
+  
+  perfplot_all <- ggplot2::ggplot(data = eval_pred, ggplot2::aes(x = esthe_all, y = esthe_pred)) + 
+    ggplot2::geom_point(size = 2, shape = 20, alpha = 0.8,col=6) + 
+    ggplot2::theme_light() +
+    ylim(1150, 1750)+xlim(1150, 1800)+
+    ggplot2::geom_smooth(method = "lm", se = TRUE, col = "black", lty = "solid", alpha = 0.80) + 
+    ggplot2::expand_limits(x = range(eval_pred$predicted_score), y = range(eval_pred$predicted_score)) +
+    ggplot2::xlab("Evaluated aesthetic values") + 
+    ggplot2::ylab("Predicted aesthetic values")+
+    #ggplot2::scale_color_manual(values =  wes_palette("Darjeeling1")) +
+    ggplot2::annotate(geom="text", x=1150, y=1750, label=paste0("f) All training set (n=",dim(eval_pred)[1],")"),
+                      color="black",hjust=0,size=textsize)+
+    #ggplot2::scale_x_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    #ggplot2::scale_y_continuous(breaks = c(1250, 1500, 1750, 2000),
+    #                            labels = c("1250", "1500", "1750", "2000")) + 
+    ggplot2::theme(axis.title = ggplot2::element_text(size = axissize1, family = "serif"),
+                   axis.text  = ggplot2::element_text(size = axissize2, family = "serif"),
+                   panel.grid = ggplot2::element_blank(),
+                   legend.position = "none")
+  
+  plot <- gridExtra::grid.arrange(perfplot_val1,perfplot_val2,perfplot_val3,perfplot_val4,perfplot_val5,perfplot_all)
+  
+  ggplot2::ggsave(plot  = plot, filename = here::here("figures_tables", "FIGURE_M.jpg"),
+                  width = 15, height = 15, units = "cm", dpi = 600)
+  
+  
+# ----  
+  
 # Distribution of the predicted score VS the evaluated ones
 # for train+val+test (FIGURE 1b side right) ----
   
@@ -180,6 +322,7 @@
                       x     = 1550  , y     = 0.00248, family = "serif",
                       color = colors[8], size = 4.5, hjust = 0)
 # ----
+  
 
 # Gather the two plots (FIGURE 1b) ----
   plot <- ggpubr::ggarrange(perfplot, densplot,

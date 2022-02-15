@@ -382,7 +382,7 @@ pathresults <- here::here("results","features")
    
 #end----
       
-####PCA analysis FIGURE S5 ----
+####PCA analysis FIGURE S1 E ----
     
     pca_res <- prcomp(datall[,which(colnames(datall) %in% all_id)], center = TRUE,scale. = TRUE)
     summary(pca_res)
@@ -396,9 +396,9 @@ pathresults <- here::here("results","features")
     
     plot <- ggbiplot(pca_res,var.axes=FALSE,groups=pca_res.campg,choices=c(1,2),alpha =0.5,ellipse = TRUE,ellipse.prob=0.99)+scale_colour_manual(values = c("grey", "red"))+ theme_bw()
     
-    ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S5.jpg"),
+    ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_E.jpg"),
                     plot = plot, 
-                    width = 16, height = 16, units = "cm", dpi = 600, family = "serif")
+                    width = 16, height = 16, units = "cm", dpi = 600)
     
     
 #end----

@@ -298,7 +298,7 @@ rm(funct_table)
   
 # ----- 
   
-# SUPPLEMENTARY FIGURE 18 -----
+# SUPPLEMENTARY FIGURE S1 S -----
   
   data <- read.csv(here::here(res_dir_biodiversity, "02_sptable_biodiv.csv"))
   
@@ -336,13 +336,13 @@ rm(funct_table)
   
   
   # Save FIGURE S20 18X9cm 600dpi
-  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S18.jpg"),
+  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S.jpg"),
                   plot = gridExtra::grid.arrange(a, b, ncol = 2), 
                   width = 20, height = 8, units = "cm", dpi = 600, family = "serif")
   
   # ----- 
 
-# SUPPLEMENTARY FIGURE 15 ----- 
+# SUPPLEMENTARY FIGURE S1 P ----- 
   
   data <- read.csv(here::here(res_dir_biodiversity, "02_sptable_biodiv.csv"))
   
@@ -404,7 +404,7 @@ rm(funct_table)
   new_order <- with(datadia, reorder(diel_activity, esthe_score, median, na.rm = T))
   
 # Save panel a, b, c
-  jpeg(here::here("figures_tables", "FIGURE_S15_abc.jpg"),
+  jpeg(here::here("figures_tables", "FIGURE_P_abc.jpg"),
        width = 20, height = 7, units = "cm", res = 600, family = "serif")
   
   par(mar = c(4, 4, 1, 0.5), family = "serif") 
@@ -466,7 +466,7 @@ rm(funct_table)
     Tukey.labels$pos       <- length(Tukey.labels$Letters):1
   
 # Save panel d
-    jpeg(here::here("figures_tables", "FIGURE_S15_d.jpg"),
+    jpeg(here::here("figures_tables", "FIGURE_P_d.jpg"),
          width = 20, height = 10, units = "cm", res = 600, family = "serif")
     par(family = "serif")
     boxplot(datatrg$esthe_score ~ datatrg$trophic_group,
@@ -549,7 +549,7 @@ rm(funct_table)
       ggplot2::labs(x ="Thermal 95thmax", y = "Aesthetic value")
   
 # Save panels efgh
-  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S15_efgh.jpg"),
+  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_P_efgh.jpg"),
                   plot = gridExtra::grid.arrange(a, b, c, d, ncol = 2), 
                   width = 20, height = 12, units = "cm", dpi = 600, family = "serif")
 # ----  

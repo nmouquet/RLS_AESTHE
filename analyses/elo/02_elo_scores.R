@@ -24,7 +24,7 @@
 # ----
   
 # Vizualize the stabilization of the scores 
-# (FIGURE S9) ----
+# (FIGURE S1 I) ----
 
 # Takes several days to run on multiple cores so it is better take a subset to have an overview
   data       <- table_survey[1-50000]
@@ -49,7 +49,7 @@
   med_pict <- png::readPNG(here::here("data", "images", "png", paste0(med_name, ".png")))
 
 # Plot
-  png(here::here("figures_tables", "FIGURE_S9.png"),
+  png(here::here("figures_tables", "FIGURE_I.png"),
       width = 800, height = 500, units  = "px", family = "serif")
   par(family = "serif")
   plot(elo_scores[,colnames(elo_scores) == c(med_name)], type = "l", ylim = c(900, 2250),
@@ -125,7 +125,7 @@
   commons <- public_eval[which(public_eval$Photograph_name %in% mayo_fisheyes_common$name_worms),
                          c("Photograph_name", "Elo_score_Tribot", "Elo_score_corrected")]
   
-# FIGURE S10 8x8 cm 600 dpi
+# FIGURE S1 J 8x8 cm 600 dpi
   minxy <- 1200
   maxxy <- 1800
   
@@ -157,7 +157,7 @@
     ggplot2::ylab("Elo score from the new survey")
 
   ggplot2::ggsave(plot = corr_elo_plot,
-                  filename = here::here("figures_tables", "FIGURE_S10.jpg"),
+                  filename = here::here("figures_tables", "FIGURE_J.jpg"),
                   width = 8, height = 8, units = "cm", dpi = 600, family = "serif")
 
   # Save

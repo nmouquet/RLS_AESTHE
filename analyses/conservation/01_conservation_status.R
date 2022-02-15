@@ -282,7 +282,7 @@ source(here::here("R", "functions_cons.R"))
   
 # ----
   
-# SUPPLEMENTARY FIGURE 19 ----
+# SUPPLEMENTARY FIGURE S1 T ----
   
   species_table <- read.csv(here::here(res_dir_conservation, "01_sptable_all.csv"))
   
@@ -392,7 +392,7 @@ source(here::here("R", "functions_cons.R"))
     ggplot2::geom_text(x = "3", y = 2100, label = "b", col = "#5b5b5b", family = "serif") +
     ggplot2::geom_text(x = "4", y = 2100, label = "c", col = "#5b5b5b", family = "serif")
   
-  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S19.jpg"),
+  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_T.jpg"),
                   plot = gridExtra::grid.arrange(a, b, nrow = 2), 
                   width = 10, height = 16, units = "cm", dpi = 600)
   

@@ -27,7 +27,7 @@ Figures and Tables will be stored in `figures_tables/`
 
 The following Figures and Tables can be reproduced with the script indicated in brackets (all in `analyses/`):
     
-- Figure 1b (`deep/02_prediction_performances.R`)
+- Figure 1b (`deep/06_prediction_performances.R`)
 - Figure 2a (`features/features_analysis.R`)
 - Figure 2b (`features/features_analysis.R`) 
 - Figure 3 (`biodiversity/01_phylogeny.R` must be run to have data for panel a and `biodiversity/02_functional_div.R` generates data for panel b and the entire figure)
@@ -42,7 +42,8 @@ The following Figures and Tables can be reproduced with the script indicated in 
 - Figure S1 H  (`elo/01_group_effect.R`)
 - Figure S1 I  (`elo/02_elo_scores.R`)
 - Figure S1 J (`elo/02_elo_scores.R`)
-- Figure S1 K (`deep/01_size_effect.R`)
+- Figure S1 K (`deep/05_size_effect.R`)
+- Figure S1 M (`deep/06_prediction_performances.R`)
 - Figure S1 M (`biodiversity/01_phylogeny.R`)
 - Figure S1 N (`biodiversity/01_phylogeny.R`)
 - Figure S1 O (`biodiversity/02_functional_div.R`)

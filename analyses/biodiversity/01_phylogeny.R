@@ -317,7 +317,7 @@
   rm(na_ed, naed_names, final_ed, sd_ed, mean_ed, time.taken, end.time, start.time, evol_distc_100)
 # ----
   
-# Figure S13 ----
+# Figure S1 N ----
   
   ed_table <- read.csv(here::here(res_dir_biodiversity, "01_sptable_phylo.csv"))
   
@@ -339,7 +339,7 @@
                    axis.title = ggplot2::element_text(size = 10, family = "serif"),
                    panel.grid = ggplot2::element_blank())
 
-    ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S13.jpg"),
+    ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_N.jpg"),
                     plot = evol_dist, 
                     width = 9, height = 9, units = "cm", dpi = 600, family = "serif")
     
@@ -394,7 +394,7 @@
 # ----
     
 # Difference of aesthetic value between the families
-# (FIGURE S14) ----
+# (FIGURE S1 O) ----
     
   species_table <- read.csv(here::here(res_dir_biodiversity, "01_sptable_phylo.csv"))
   nb_sp_fam     <- read.csv(here::here(res_dir_biodiversity, "01_nb_sp_fam.csv"))
@@ -459,7 +459,7 @@
                          ggplot2::aes(x = pos, y = 2050, label = Letters), hjust = 0, size = 3)
     
 # Save plot
-  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_S14.jpg"), 
+  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_O.jpg"), 
                   plot = esthe_fam_plot, family = "serif", dpi = 600)
   
   rm(esthe_fam_plot, red_sp, Tukey.labels, Tukey.levels, TUKEY, ANOVA, model, new_label,
