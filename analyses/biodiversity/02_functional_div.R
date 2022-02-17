@@ -246,15 +246,153 @@ rm(funct_table)
   
 # ----
   
-# FIGURE 3 -----
+# FIGURE 3 & FIGURE -----
 
   data <- read.csv(here::here(res_dir_biodiversity, "02_sptable_biodiv.csv"))
-  
   data <- data[which(!is.na(data$ED)),]
-  
   data <- data[order(data$ED, decreasing = TRUE),]
-  rownames(data) <- NULL
+  rownames(data) <- data$sp_name
   
+  #Aesthetic ~ Age mean with phylogenetic distance Fig 3A
+  
+    ##A linear model, look at the distribution of residuals and the phylogenetic signal in the residuals 
+  
+      fit = lm(esthe_score~log(ages_mean),data=data)
+      sum_fit <- summary(fit)
+
+    ##B do the lm.phylo analysis over the 100 trees 
+      fit_esth_ages_mean <- do.call(rbind,parallel::mclapply(1:100, function(id){
+        
+        fit_LB = phylolm(esthe_score~log(ages_mean),data=data,phy=set100[[id]],model="lambda")
+        res_fit_LB <- summary(fit_LB)
+        cbind.data.frame(tree=id,p.value_LB=res_fit_LB$coefficients[2,4],intercept=res_fit_LB$coefficients[1,1],slope=res_fit_LB$coefficients[2,1])
+        
+      },mc.cores = 7))
+      
+      mean_p_fit_esth_ages_mean =mean(fit_esth_ages_mean$p.value_LB)
+      sd_p_fit_esth_ages_mean =sd(fit_esth_ages_mean$p.value_LB)
+      mean_intercept_fit_esth_ages_mean =mean(fit_esth_ages_mean$intercept)
+      mean_slope_fit_esth_ages_mean =mean(fit_esth_ages_mean$slope)
+      sd_slope_fit_esth_ages_mean =sd(fit_esth_ages_mean$slope)
+      
+      harmonicmeanp::hmp.stat(fit_esth_ages_mean$p.value_LB)
+      
+      
+      a <-
+        ggplot2::ggplot(data, ggplot2::aes(y = esthe_score, x = ages_mean)) +
+        ggplot2::geom_point(shape = 21, alpha = 1, size = 2 ,
+                            ggplot2::aes(fill = log(ED), color = log(ED))
+        ) + 
+        ggplot2::scale_fill_gradientn(colors = colors) +
+        ggplot2::scale_color_gradientn(colors = colors) +
+        geom_abline(intercept=mean_intercept_fit_esth_ages_mean, slope=mean_slope_fit_esth_ages_mean)+
+        ggplot2::scale_x_continuous(trans = 'log2') +
+        ggplot2::theme_bw() +
+        ggplot2::theme(axis.text  = ggplot2::element_text(size = 8, family = "serif"),
+                       axis.title = ggplot2::element_text(size = 10, family = "serif"),
+                       panel.grid = ggplot2::element_blank(),
+                       legend.position = "none")+
+        ggplot2::labs(x ="Age of the species (MY)", y = "Aesthetic values")
+  
+
+  #Aesthetic ~ Distinctiveness with phylogenetic distance 
+
+    ##A linear model, look at the distribution of residuals and the phylogenetic signal in the residuals 
+
+      fit = lm(esthe_score~Di,data=data)
+      sum_fit <- summary(fit)$residuals
+      
+
+    ##B do the lm.phylo analysis over the 100 trees 
+      fit_esth_Di <- do.call(rbind,parallel::mclapply(1:100, function(id){
+
+        fit_LB = phylolm(esthe_score~Di,data=data,phy=set100[[id]],model="lambda")
+        res_fit_LB <- summary(fit_LB)
+        cbind.data.frame(tree=id,p.value_LB=res_fit_LB$coefficients[2,4],intercept=res_fit_LB$coefficients[1,1],slope=res_fit_LB$coefficients[2,1])
+
+      },mc.cores = 7))
+      
+      mean_p_fit_esth_Di =mean(fit_esth_Di$p.value_LB)
+      sd_p_fit_esth_Di =sd(fit_esth_Di$p.value_LB)
+      mean_intercept_fit_esth_Di =mean(fit_esth_Di$intercept)
+      mean_slope_fit_esth_Di =mean(fit_esth_Di$slope)
+      sd_slope_fit_esth_Di =sd(fit_esth_Di$slope)
+      
+      harmonicmeanp::hmp.stat(fit_esth_Di$p.value_LB)
+      
+      b <- ggplot2::ggplot(data, ggplot2::aes(y = esthe_score, x = Di)) +
+        ggplot2::geom_point(shape = 21, alpha = 1, size = 2,
+                            ggplot2::aes(fill = log(ED), color = log(ED))) +
+        geom_abline(intercept=mean_intercept_fit_esth_Di, slope=mean_slope_fit_esth_Di)+
+        ggplot2::scale_fill_gradientn(colours = colors) +
+        ggplot2::scale_color_gradientn(colours = colors) +
+        #ggplot2::geom_smooth(method = "lm", formula = y~x, col = 'gray30') +
+        ggplot2::theme_bw() +
+        ggplot2::theme(axis.text  = ggplot2::element_text(size = 8, family = "serif"),
+                       axis.title = ggplot2::element_text(size = 10, family = "serif"),
+                       panel.grid = ggplot2::element_blank(),
+                       legend.position = c(0.89, 0.72),
+                       legend.background = ggplot2::element_blank(),
+                       legend.title = ggplot2::element_text(size = 8, family = "serif"),
+                       legend.text = ggplot2::element_text(size = 8, family = "serif")
+                       # legend.position = "none"
+        ) +
+        ggplot2::labs(x ="Functional Distinctiveness", y = "Aesthetic values")
+       
+      
+        # a <- ggpubr::ggdensity(fit_esth_Di, x = "r.squared_LB", 
+        #         fill = "#0073C2FF", color = "#0073C2FF",
+        #         add = "mean", rug = TRUE,title=paste0("Esthe~Di lambda, r2 mean= ",round(mean(fit_esth_Di$r.squared_LB),3)))
+        # b <- ggpubr::ggdensity(fit_esth_Di, x = "p.value_LB", 
+        #                   fill = "#0073C2FF", color = "#0073C2FF",
+        #                   add = "mean", rug = TRUE,title=paste0("p.value mean= ",round(mean(fit_esth_Di$p.value_LB),10)))
+        # c <- ggpubr::ggdensity(fit_esth_Di, x = "r.squared_BM", 
+        #                   fill = "#0073C2FF", color = "#0073C2FF",
+        #                   add = "mean", rug = TRUE,title=paste0("Esthe~Di BM, r2 mean= ",round(mean(fit_esth_Di$r.squared_BM),3)))
+        # d <- ggpubr::ggdensity(fit_esth_Di, x = "p.value_BM", 
+        #                   fill = "#0073C2FF", color = "#0073C2FF",
+        #                   add = "mean", rug = TRUE,title=paste0("p.value mean= ",round(mean(fit_esth_Di$p.value_BM),4)))
+        # 
+        # gridExtra::grid.arrange(a,b,c,d)
+
+  
+  #Aesthetic ~ Species ages with phylogenetic distance 
+    
+
+    fit = lm(esthe_score~log(ages_mean),data=data)
+    summary(fit)
+    
+    fit_esth_ages_mean <- do.call(rbind,parallel::mclapply(1:100, function(id){
+      
+      fit_BM = phylolm(esthe_score~log(ages_mean),data=data,phy=set100[[id]],model="BM")
+      res_fit_BM <- summary(fit_BM)
+      fit_LB = phylolm(esthe_score~log(ages_mean),data=data,phy=set100[[id]],model="lambda")
+      res_fit_LB <- summary(fit_LB)
+      cbind.data.frame(tree=id,r.squared_BM=res_fit_BM$r.squared,p.value_BM=res_fit_BM$coefficients[2,4], aic_BM=res_fit_BM$aic,
+                       r.squared_LB=res_fit_LB$r.squared,p.value_LB=res_fit_LB$coefficients[2,4], aic_LB=res_fit_LB$aic)
+    },mc.cores = 6))
+    
+    a <- ggpubr::ggdensity(fit_esth_ages_mean, x = "r.squared_LB", 
+                           fill = "#0073C2FF", color = "#0073C2FF",
+                           add = "mean", rug = TRUE,title=paste0("Esthe~ages_mean lambda, r2 mean= ",round(mean(fit_esth_ages_mean$r.squared_LB),3)))
+    b <- ggpubr::ggdensity(fit_esth_Di, x = "p.value_LB", 
+                           fill = "#0073C2FF", color = "#0073C2FF",
+                           add = "mean", rug = TRUE,title=paste0("p.value mean= ",round(mean(fit_esth_ages_mean$p.value_LB),10)))
+    c <- ggpubr::ggdensity(fit_esth_Di, x = "r.squared_BM", 
+                           fill = "#0073C2FF", color = "#0073C2FF",
+                           add = "mean", rug = TRUE,title=paste0("Esthe~ages_mean BM, r2 mean= ",round(mean(fit_esth_ages_mean$r.squared_BM),3)))
+    d <- ggpubr::ggdensity(fit_esth_Di, x = "p.value_BM", 
+                           fill = "#0073C2FF", color = "#0073C2FF",
+                           add = "mean", rug = TRUE,title=paste0("p.value mean= ",round(mean(fit_esth_ages_mean$p.value_BM),4)))
+    
+    gridExtra::grid.arrange(a,b,c,d)
+    
+    
+  
+    
+  #Figures 3 
+    
+    
   a <-
     ggplot2::ggplot(data, ggplot2::aes(y = esthe_score, x = ages_mean)) +
     ggplot2::geom_point(shape = 21, alpha = 1, size = 2 ,

@@ -25,7 +25,7 @@
 # Classification -----
 
   # This gets the classification for all species in the bdd
-  # It takes more than an hour whith interactions required (taxize)
+  # The first line takes more than an hour whith interactions required (taxize)
   # So once it has been computed, if the bdd doesn't change, no need to re-run.
 
   classif       <- get_classif(as.character(species_table$sp_name))
@@ -56,7 +56,7 @@
     # Dropping names not in list
     set100 <- parallel::mclapply(set100_all,function(x){
       ape::drop.tip(x, x$tip.label[!is.element(x$tip.label,as.character(phylo_table$sp_name))])
-    }, mc.cores = 3)
+    }, mc.cores = 7)
 
 # Save
   save(set100, file =  here::here(res_dir_biodiversity, "01_set100.RData"))
@@ -285,7 +285,7 @@
     res        <- ed_tree[,2]
     names(res) <- ed_tree$Species
     res
-  }, mc.cores = 4))
+  }, mc.cores = 7))
   end.time       <- Sys.time()
   time.taken     <- end.time - start.time
   time.taken
@@ -322,15 +322,32 @@
   ed_table <- read.csv(here::here(res_dir_biodiversity, "01_sptable_phylo.csv"))
   
   table       <- ed_table[-which(is.na(ed_table$ED)),]
+  rownames(table) <- table$sp_name
   modlog      <- summary(lm(table$esthe_score ~ log(table$ED), na.action = na.omit))
+  
+  fit_esth_ED <- do.call(rbind,parallel::mclapply(1:100, function(id){
+    fit_LB = phylolm(esthe_score~log(ED),data=table,phy=set100[[id]],model="lambda")
+    res_fit_LB <- summary(fit_LB)
+    cbind.data.frame(tree=id,p.value_LB=res_fit_LB$coefficients[2,4],intercept=res_fit_LB$coefficients[1,1],slope=res_fit_LB$coefficients[2,1])
+    
+  },mc.cores = 7))
+  
+  mean_p_fit_esth_ED =mean(fit_esth_ED$p.value_LB)
+  sd_p_fit_esth_ED =sd(fit_esth_ED$p.value_LB)
+  mean_intercept_fit_esth_ED =mean(fit_esth_ED$intercept)
+  mean_slope_fit_esth_ED =mean(fit_esth_ED$slope)
+  sd_slope_fit_esth_ED =sd(fit_esth_ED$slope)
+  
+  harmonicmeanp::hmp.stat(fit_esth_ED$p.value_LB)
   
   evol_dist   <-
     ggplot2::ggplot(table, ggplot2::aes(x = ED, y = esthe_score)) +
     ggplot2::geom_point(shape = 19, alpha = 0.8, col = colors[9]) +
     ggplot2::labs(y = "Aesthetic value", x = "Evolutionary Distinctiveness (MY)") +
-    ggplot2::geom_smooth(method = "glm", formula = y~x,
-                         method.args = list(family = gaussian(link = 'log')), 
-                         col = colors[2], se = FALSE) +
+    geom_abline(intercept=mean_intercept_fit_esth_ED, slope=mean_slope_fit_esth_ED)+
+    # ggplot2::geom_smooth(method = "glm", formula = y~x,
+    #                      method.args = list(family = gaussian(link = 'log')), 
+    #                      col = colors[2], se = FALSE) +
     ggplot2::scale_x_continuous(trans  ='log',
                                 breaks = c(10, 50, 100, 150),
                                 labels = c("10", "50", "100", "150")) +
