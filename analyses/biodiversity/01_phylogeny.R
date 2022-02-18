@@ -325,6 +325,9 @@
   rownames(table) <- table$sp_name
   modlog      <- summary(lm(table$esthe_score ~ log(table$ED), na.action = na.omit))
   
+  slope_modlog=modlog$coefficients[2,1]
+  intercept_modlog=modlog$coefficients[1,1]
+  
   fit_esth_ED <- do.call(rbind,parallel::mclapply(1:100, function(id){
     fit_LB = phylolm(esthe_score~log(ED),data=table,phy=set100[[id]],model="lambda")
     res_fit_LB <- summary(fit_LB)
@@ -344,10 +347,8 @@
     ggplot2::ggplot(table, ggplot2::aes(x = ED, y = esthe_score)) +
     ggplot2::geom_point(shape = 19, alpha = 0.8, col = colors[9]) +
     ggplot2::labs(y = "Aesthetic value", x = "Evolutionary Distinctiveness (MY)") +
-    geom_abline(intercept=mean_intercept_fit_esth_ED, slope=mean_slope_fit_esth_ED)+
-    # ggplot2::geom_smooth(method = "glm", formula = y~x,
-    #                      method.args = list(family = gaussian(link = 'log')), 
-    #                      col = colors[2], se = FALSE) +
+    geom_abline(intercept=intercept_modlog, slope=slope_modlog,col="#8b8b8b")+
+    geom_abline(intercept=mean_intercept_fit_esth_ED, slope=mean_slope_fit_esth_ED,size=0.5,linetype = "dashed",col="#8b8b8b")+
     ggplot2::scale_x_continuous(trans  ='log',
                                 breaks = c(10, 50, 100, 150),
                                 labels = c("10", "50", "100", "150")) +
@@ -358,7 +359,7 @@
 
     ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_N.jpg"),
                     plot = evol_dist, 
-                    width = 9, height = 9, units = "cm", dpi = 600, family = "serif")
+                    width = 9, height = 9, units = "cm", dpi = 600)
     
   rm(evol_dist, modlog, table, esthe_table, ed_table, set100)
 
