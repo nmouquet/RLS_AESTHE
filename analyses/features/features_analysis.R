@@ -178,7 +178,7 @@ pathresults <- here::here("results","features")
     
     ##Change the names of the variables (see Text F in S1 File)
     
-    data_plot$name <- c("Elongatedness","Pattern variation","Pattern asymmetry","Mean light","Morpho_2","Pattern repetition","SD light","Color saturation","Color heterogeneity")
+    data_plot$name <- c("Elongatedness","Pattern variation","Pattern asymmetry","Mean lightness","Morpho_2","Pattern repetition","SD lightness","Color saturation","Color heterogeneity")
     
     ##Draw the figure 
     library(ggplot2)
@@ -207,8 +207,8 @@ pathresults <- here::here("results","features")
     
     ##Change the names of the variables (see Text F in S1 File)
     
-    colnames(data_scale) <- c("esthe_pred","Color heterogeneity","SD light","Color saturation","Elongatedness",
-                              "Morpho_2","Mean light","Pattern repetition","Pattern asymmetry","Pattern variation")
+    colnames(data_scale) <- c("esthe_pred","Color heterogeneity","SD lightness","Color saturation","Elongatedness",
+                              "Morpho_2","Mean lightness","Pattern repetition","Pattern asymmetry","Pattern variation")
    
     pca_fish<-ade4::dudi.pca(data_scale[,-1], scannf=FALSE, nf = 5)
     
