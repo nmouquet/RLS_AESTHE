@@ -27,8 +27,8 @@
 # (FIGURE S1 I) ----
 
 # Takes several days to run on multiple cores so it is better take a subset to have an overview
-  data       <- table_survey[1-50000]
-  elo_scores <- booting_elo(data, stepelo = 500, runs = 100)
+  data       <- table_survey
+  elo_scores <- booting_elo(data, stepelo = 500, runs = 1000)
 
   write.csv(elo_scores, file = here::here(res_dir_elo, "02_stabilization_elo.csv"), row.names = FALSE)
 

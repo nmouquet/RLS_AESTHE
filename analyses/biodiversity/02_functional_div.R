@@ -1,7 +1,7 @@
 ###################################################################################################
 #' Functional diversity
 #'
-#'This script produces Figure 3, Figure S15 and Figure S18 of the 
+#'This script produces Figure 3, Figure S1 S, Figure S1 P and table S1 D
 #'Langlois et al. & Mouquet 2021 paper.
 #'
 #'@author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
@@ -461,7 +461,7 @@ rm(funct_table)
   
 # ----    
 
-# SUPPLEMENTARY FIGURE S1 P ----- 
+# SUPPLEMENTARY FIGURE S1 P and Table S1 D----- 
   
   data <- read.csv(here::here(res_dir_biodiversity, "02_sptable_biodiv.csv"))
   

@@ -257,7 +257,7 @@
             row.names = FALSE)
 # ----
   
-# TABLE S2 ----
+# TABLE B S1 ----
   # Remove families with 5 or less species beacause they are too small samples
   # to have a correct measure
   pagel_all <- read.csv(here::here(res_dir_biodiversity, "01_pagel_all.csv"))
@@ -265,7 +265,7 @@
                          c("family", "meanlambda_rounded", "selambda_rounded", "meanpval_rounded",
                            "sepval_rounded", "size_fam", "percent_fam")]
 
-  write.csv(pagelred, file = here::here("figures_tables", "TABLE_S2.csv"),
+  write.csv(pagelred, file = here::here("figures_tables", "TABLE_B_S1.csv"),
             row.names = FALSE)
 
   rm(pagelred, pagel_lambda_E, i, j, end.time, time.taken, start.time, lambda_100,

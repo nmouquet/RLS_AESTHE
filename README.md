@@ -52,9 +52,9 @@ The following Figures and Tables can be reproduced with the script indicated in 
 - Figure S1 S (`biodiversity/02_functional_div.R`)
 - Figure S1 T (`conservation/01_conservation_status.R`)
       
-- Table S1 (`elo/01_group_effect.R`)
-- Table S2 (`biodiversity/01_phylogeny.R`)
-- Table S4 (`biodiversity/02_functional_div.R`)
+- Table S1 A  (`elo/01_group_effect.R`)
+- Table S1 B  (`biodiversity/01_phylogeny.R`)
+- Table S1 D  (`biodiversity/02_functional_div.R`)
 
 - Extended Table 2 (`deep/03_aggregate_species_level.R`)
 

@@ -104,7 +104,6 @@
 # ----
 
 # Pool countries -----
-
   europe <- c("ALA", "ALB", "AND", "AUT", "BEL", "BGR", "BIH", "BLR", "CHE", "CYP", "CZE", "DEU",
               "DNK", "EST", "FIN", "FRO", "GBR", "GIB", "GRC", "HRV", "HUN", "IMN", "IRL", "ISL",
               "ITA", "JEY", "LIE", "LTU", "LUX", "LVA", "MCO", "MDA", "MKD", "MLT", "MNE", "NLD",
@@ -118,7 +117,7 @@
 
 # ----
 
-# Number of aswers per category for each variable 
+# Number of answers per category for each variable 
 # (FIGURE S1 H) ----
 
   newjudge <- table_elo_judge[,c("judge_id", "gender", "age", "education", "scuba_diving",
@@ -211,8 +210,6 @@
   
   images_list <- unique(table_elo_judge$challenger_1)
   
-
-  images_list <- images_list[images_list %in% eval_pred$name]
   dim(table_elo_judge[table_elo_judge$challenger_1 %in% images_list,])
   
   
@@ -242,7 +239,7 @@
 # ----
   
 # Order variables in the model according to their individual contribution to the % of explained
-# variance (TABLE S1) ----
+# variance (TABLE A S1) ----
 
   list_var <- c("gender", "age_cat", "education", "scuba_diving", "country_cat", 
                 "fishing_spearing", "aquarium", "place", "distance_sea", "frequency_nature",
@@ -269,7 +266,7 @@
 # View summary of first model (TABLE S1)
   
   table_s1 <- car::Anova(first_model)
-  write.csv(table_s1, here::here("figures_tables", "TABLE_S1.csv"), row.names = TRUE)
+  write.csv(table_s1, here::here("figures_tables", "TABLE_A_S1.csv"), row.names = TRUE)
   
   rm(list_var, start.time, end.time, time.taken, pervar, first_model)
 
