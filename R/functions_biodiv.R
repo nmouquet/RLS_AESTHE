@@ -7,7 +7,7 @@
 #'         Alienor Stahl, \email{a.stahl67@@gmail.com},
 #'         Florian Baletaud, \email{baletaudflorian@@gmail.com}
 #'
-#' @date 2021/02/17
+#' @date 2021/02/17 first created
 ##################################################################################################
 
 # GET CLASSIF

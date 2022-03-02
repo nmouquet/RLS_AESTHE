@@ -1,7 +1,7 @@
 ###################################################################################################
 #' Vizualize the performances of the deep learning model
 #'
-#'Produces Figure 1 panel b of the Langlois et al. & Mouquet 2021 paper.
+#'Produces Figure 1 panel b
 #'
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'         Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
@@ -9,7 +9,7 @@
 #'         Julien Renoult \email{jurenoult@@gmail.com}
 #'         
 #'
-#' @date 2021/06/29
+#' @date 2021/06/29 first created
 ##################################################################################################
 
 # Load data and functions ----

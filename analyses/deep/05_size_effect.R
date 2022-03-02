@@ -1,13 +1,13 @@
 ###################################################################################################
 #' Figure size effect
 #'
-#'Produces Figure S11 of the Langlois et al. & Mouquet 2021 paper.
+#'Produces Figure S1 K
 #'
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'         Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
 #'         Valentine Fleure \email{valentine.fleure@@gmail.com}
 #'
-#' @date 2021/06/29
+#' @date 2021/06/29 first created
 ##################################################################################################
 
 # Load ----

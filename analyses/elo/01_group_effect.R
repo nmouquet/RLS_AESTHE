@@ -4,14 +4,14 @@
 #'This script analyses if the socio-cultural background pf the judges of the online survey has an
 #'effect on the aesthetic score attribute to the photographs and if yes, quantifies this effect
 #'
-#'Produces Figure S7, Figure S8 and Table S1 of the Langlois et al. & Mouquet 2021 paper.
+#'Produces Figure S1 G, Figure S1 H and Table A S1 
 #'
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'         Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
 #'         François Guilhaumon, \email{francois.guilhaumon@@ird.fr}
 #'         Alienor Stahl, \email{a.stahl67@@gmail.com}
 #'
-#' @date 2021/06/29
+#' @date 2021/06/29 first created
 ##################################################################################################
 
 # Load function and data ----
@@ -226,13 +226,9 @@
 
 # Test difference between people under and over 14 ----
   
-  for(i in 1:nrow(table_elo_judge)){
-    ifelse(table_elo_judge$age[i] <= 14, 
-    table_elo_judge$youth[i] <-  "under",
-    table_elo_judge$youth[i] <- "over"
-    )
-    cat(paste("Line ", i, " ok\n"))
-  }
+  table_elo_judge$youth <- "over"
+  table_elo_judge$youth[table_elo_judge$age<=14] <- "under"
+  table(table_elo_judge$youth)
   
   kw <- kruskal.test(wins ~ as.factor(youth), data = table_elo_judge)
 
@@ -246,6 +242,9 @@
                 "knowledge_fish")
 
 # Run the first model out of the function
+  
+  RhpcBLASctl::blas_set_num_threads(40) # set the total number of proc used by the BLAS (within the glmer function of the lme4 package) make sure to keep some proc free :) 
+  
   start.time  <- Sys.time()
   first_model <- lme4::glmer(as.formula(paste("wins ~", paste(list_var, collapse = "+"),
                                               " + (1|challenger_1)")), family = binomial,

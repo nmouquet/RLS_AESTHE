@@ -19,7 +19,7 @@ The script `analyses/elo/01_group_effect.R` normally generates and use a large f
 
 ## File with all results  
 
-The file results/conservation/01_sptable_all.csv contains all the information used and produced in this study at the species level for the 2417 species concerned. You are welcome to use it by citing properly our work, but even more welcome to contact us (nicolas.mouquet@cnrs.fr) if you want to collaborate :) 
+The file results/conservation/01_sptable_all.csv contains all the information used and produced in this study at the species level for the 2415 species concerned. You are welcome to use it by citing properly our work, but even more welcome to contact us (nicolas.mouquet@cnrs.fr) if you want to collaborate :) 
     
 ## Figures and Tables
 

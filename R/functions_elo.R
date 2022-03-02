@@ -7,7 +7,7 @@
 #'         François Guilhaumon, \email{francois.guilhaumon@@ird.fr},
 #'         Alienor Stahl, \email{a.stahl67@@gmail.com}
 #'
-#' @date 2021/02/17
+#' @date 2021/02/17 first created
 ##################################################################################################
 
 #' booting_elo

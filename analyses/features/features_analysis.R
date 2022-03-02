@@ -1,5 +1,6 @@
 #' ################################################################################################
-#' #' Features analysis
+#' #' Features analysis 
+#' #' Produces Figure 2, Figure S1 E 
 #' #'
 #' #'Analysis the relationship between images features and aesthetic scores 
 #' #'
@@ -8,7 +9,7 @@
 #' #'         François Guilhaumon, \email{francois.guilhaumon@@ird.fr}
 #' #'         Nicolas Casajus, \email{nicolas.casajus@@fondationbiodiversite.fr}
 #' #'
-#' #' @date 2021/05/17
+#' #' @date 2021/05/17 first created
 #' ################################################################################################
 
 rm(list=ls(all=TRUE)) 

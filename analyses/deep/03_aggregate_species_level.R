@@ -1,14 +1,14 @@
 ###################################################################################################
 #' Aggregate the scores at the species level
 #'
-#'Produce Figure S16, Figure S17 and Extended Table 2 of the Langlois et al. & Mouquet 2021 paper. 
+#'Produce Figure S1 Q, Figure S1 R and Extended Table 2 
 #'
 #'@author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'        Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
 #'        Alienor Stahl, \email{a.stahl67@@gmail.com},
 #'        Florian Baletaud, \email{baletaudflorian@@gmail.com}
 #'
-#' @date 2021/06/29
+#' @date 2021/06/29 first created
 ##################################################################################################
 
 # Load data ----

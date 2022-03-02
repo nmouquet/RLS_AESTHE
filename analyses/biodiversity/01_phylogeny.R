@@ -1,8 +1,7 @@
 ################################################################################################
 #' Phylogenetic diversity
 #'
-#'This script produces the background of Fig. 4, Fig. S13, Fig. S14 and Table S2 of the 
-#'Langlois et al. & Mouquet 2021 paper.
+#'This script produces the background of Figure 4, Figure S1 N, Figure S1 O, and Table B S1  
 #'
 #'@author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'        Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
@@ -11,7 +10,7 @@
 #'        François Guilhaumon, \email{francois.guilhaumon@@ird.fr}
 #'
 #'
-#' @date 2021/06/29
+#' @date 2021/06/29  first created
 ################################################################################################
 
 # Load ----

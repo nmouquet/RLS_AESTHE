@@ -1,7 +1,7 @@
 ###################################################################################################
 #' Conservation status
 #'
-#'Produces Figure 5 and Figure S19 of the Langlois et al. & Mouquet 2021 paper.
+#'Produces Figure 5 and Figure S1 T
 #'
 #'Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'        Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
@@ -9,7 +9,7 @@
 #'        Nicolas Casajus, \email{nicolas.casajus@@fondationbiodiversite.fr},
 #'        Nicolas Loiseau, \email{nicolas.loiseau1@@gmail.com}
 #'
-#' @date 2021/06/29
+#' @date 2021/06/29 first created
 ##################################################################################################
 
 source(here::here("R", "functions_cons.R"))

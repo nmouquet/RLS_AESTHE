@@ -4,14 +4,14 @@
 #'This script computes the Elo scores for the photographs of the survey of 2019
 #' and adujst the scores of the survey of Tribot
 #' 
-#' Produces Figure S9 and Figure S10 of the Langlois et al. & Mouquet 2021 paper.
+#' Produces Figure S1 I and Figure S1 J
 #'
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'         Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr},
 #'         François Guilhaumon, \email{francois.guilhaumon@@ird.fr}
 #'         Alienor Stahl, \email{a.stahl67@@gmail.com}
 #'
-#' @date 2021/06/29
+#' @date 2021/06/29 first created
 ##################################################################################################
 
 # Load data and functions ----
@@ -26,9 +26,10 @@
 # Vizualize the stabilization of the scores 
 # (FIGURE S1 I) ----
 
-# Takes several days to run on multiple cores so it is better take a subset to have an overview
-  data       <- table_survey
-  elo_scores <- booting_elo(data, stepelo = 500, runs = 1000)
+  # Takes several days to run on multiple cores so it is better take a subset to have an overview; the example shown in the supp files 
+  # compute the Elo on the 200000 first matches with only 50 runs
+  data       <- table_survey[1:200000,]
+  elo_scores <- booting_elo(data, stepelo = 2000, runs = 50)
 
   write.csv(elo_scores, file = here::here(res_dir_elo, "02_stabilization_elo.csv"), row.names = FALSE)
 
@@ -93,7 +94,7 @@
 # ----
 
 # Correlation between the survey of Tribot et al. 2018 (mayo) and our survey (fisheyes)
-# (Figure S10)----
+# (Figure S1 J)----
 
 # Identify the pictures which are in fisheyes and mayo
   mayo_fisheyes_common <- esthe_focus[which(esthe_focus$mayo_campgn == 1 &

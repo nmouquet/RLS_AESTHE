@@ -4,7 +4,7 @@
 #' 
 #' @author Nicolas Casajus, \email{nicolas.casajus@@gmail.com}
 #'
-#' @date 2021/02/17
+#' @date 2021/02/17 first created
 ##################################################################################################
 
 #' Shadow a text

@@ -7,7 +7,7 @@
 #'         Florian Baletaud, \email{baletaudflorian@@gmail.com},
 #'         Nicolas Loiseau, \email{nicolas.loiseau1@@gmail.com}
 #'
-#' @date 2021/02/17
+#' @date 2021/02/17 first created
 ##################################################################################################
 
 #' dunnTestExtra

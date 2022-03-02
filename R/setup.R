@@ -26,7 +26,7 @@ cran_packages <- c(
   
   "SDMTools", "splancs", "tidyr", "tidyjson", "tidytree", "treeio",
   
-  "usethis", "venn", "viridis", "wesanderson", "worms", "xlsx","phylolm",'harmonicmeanp')
+  "usethis", "venn", "viridis", "wesanderson", "worms", "xlsx","phylolm",'harmonicmeanp','RhpcBLASctl')
 
 n_i_p <- cran_packages[!(cran_packages %in% installed.packages())]
 
