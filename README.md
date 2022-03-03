@@ -15,7 +15,7 @@ This repository is structured as follow:
 
 Not all fish images are free of copyrights. We thus provide a example sample of images in `data/example_images/`. The codes calling all images will show errors but you can use the example images set to run them. See Extended Table 1 (provided as a supplementary information) for copyrights. 
 
-The script `analyses/elo/01_group_effect.R` normally generates and use a large file: 01_first_model.RData . It takes several days to generate this file but you can instead download it from https://zenodo.org/record/5052745#.YN2DpW46_LY (see lines 257-258 of script).
+The script `analyses/elo/01_group_effect.R` normally generates and use a large file: 01_first_model.RData . It takes several days to generate this file but you can instead download it from https://zenodo.org/record/6325532#.YiDG99_jLoA (see lines 257-258 of script).
 
 ## File with all results  
 
