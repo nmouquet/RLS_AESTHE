@@ -28,7 +28,7 @@
 
   # Takes several days to run on multiple cores so it is better take a subset to have an overview; the example shown in the supp files 
   # compute the Elo on the 200000 first matches with only 50 runs
-  data       <- table_survey[1:200000,]
+  data       <- table_survey
   elo_scores <- booting_elo(data, stepelo = 2000, runs = 50)
 
   write.csv(elo_scores, file = here::here(res_dir_elo, "02_stabilization_elo.csv"), row.names = FALSE)
@@ -42,8 +42,10 @@
   min_name   <- scores$name[which(scores$elo_score == min(scores$elo_score))] # Gerres_subfasciatus_A_2
   med_name   <- scores$name[which(median(scores$elo_score) - 5 <= scores$elo_score &
                                     scores$elo_score <= median(scores$elo_score) + 5)]
-
+  
+  max_name <- "Pomacanthus_imperator_J_1"
   med_name <- "Pseudanthias_huchtii_M_1"
+  min_name <- "Gerres_subfasciatus_A_2"
   
   max_pict <- png::readPNG(here::here("data", "images", "png", paste0(max_name, ".png")))
   min_pict <- png::readPNG(here::here("data", "images", "png", paste0(min_name, ".png")))
@@ -57,9 +59,9 @@
        x = elo_scores$match_nb, xlab = "Number of matches", ylab = "Elo score")
   lines(elo_scores[,colnames(elo_scores) == c(min_name)],col = "red", x = elo_scores$match_nb)
   lines(elo_scores[,colnames(elo_scores) == c(max_name)],col = "green", x = elo_scores$match_nb)
-  graphics::rasterImage(max_pict, xleft = 270000, xright = 320000, ybottom = 1870, ytop = 2370)
-  graphics::rasterImage(med_pict, xleft = 270000, xright = 320000, ybottom = 1400, ytop = 1900)
-  graphics::rasterImage(min_pict, xleft = 270000, xright = 320000, ybottom = 1000, ytop = 1500)
+  graphics::rasterImage(max_pict, xleft = 520000, xright = 580000, ybottom = 1950, ytop = 2250)
+  graphics::rasterImage(med_pict, xleft = 520000, xright = 580000, ybottom = 1550, ytop = 1850)
+  graphics::rasterImage(min_pict, xleft = 520000, xright = 580000, ybottom = 1100, ytop = 1400)
   dev.off()
 
 # ----
