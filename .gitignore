@@ -41,11 +41,12 @@ vignettes/*.pdf
 # Datafile with copyright issues 
 data/images/
 
-
-.Rproj.user
+# macOS files
 .DS_Store
+
+# RStudio files
+RLS_AESTHE.Rproj
+.Rproj.user
 
 # Large file
 results/elo/01_first_model.RData
-
-

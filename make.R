@@ -1,17 +1,17 @@
-###################################################################################################
 #' Run the Entire Project
 #'
 #' This script runs the entire project and produces all figures present in the
-#' Langlois et al. & Mouquet 2021 paper.
+#' Langlois, Mouquet _et al._ paper submitted to PLoS Biology.
 #'
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
 #'         Nicolas Mouquet, \email{nicolas.mouquet@@cnrs.fr}
 #'
 #' @date 2021/06/18
-##################################################################################################
-
-# WARNING running this script calls all the scripts and takes days so if you want to work on one 
-# or a few scripts, you should run lines 14-21 of this script and then go to the other one.
+#' 
+#' @note
+#' **WARNING:** Running this script calls all the scripts and takes days so if 
+#' you want to work on one or a few scripts, you should run lines 14-21 of this 
+#' script and then go to the other one.
 
 rm(list = ls())
 
@@ -39,13 +39,3 @@ source(here::here("analyses", "biodiversity", "01_phylogeny.R"))
 source(here::here("analyses", "biodiversity", "01_functional_div.R"))
 
 source(here::here("analyses", "conservation", "01_conservation_status.R"))
-
-
-
-
-
-
-
- 
- 
- 
