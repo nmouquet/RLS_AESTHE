@@ -13,14 +13,36 @@
 #' you want to work on one or a few scripts, you should run lines 14-21 of this 
 #' script and then go to the other one.
 
+
+## Clean environment ----
+
 rm(list = ls())
 
-if (!("here" %in% installed.packages())) install.packages("here")
 
-source(here::here("R", "setup.R"))
+## Install required dependencies ----
+
+if (!("remotes" %in% utils::installed.packages())) 
+  install.packages("remotes")
+
+if (!("SDMTools" %in% utils::installed.packages()))
+  install.packages("SDMTools", repos = "https://rforge.net", 
+                   dependencies = FALSE)
+
+remotes::install_deps(upgrade = "never")
+
+
+## Load packages & functions + Setup project ----
+
+devtools::load_all(here::here())
+
+
+## Define colors ----
 
 colors <- c('#a50026', '#d73027', '#f46d43', '#fdae61', '#fee090', '#e0f3f8',
             '#abd9e9', '#74add1', '#4575b4', '#313695')
+
+
+## Run analyses ----
 
 source(here::here("analyses", "features", "features_analysis.R"))
 

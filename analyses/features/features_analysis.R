@@ -234,7 +234,7 @@ pathresults <- here::here("results","features")
 
     ## old fashion (thanks Nicolas_C !)
     
-      source(here::here("R/shadow_text.R"))
+      source(here::here("R", "shadow_text.R"))
       
       n_bins <- 255
       
@@ -395,7 +395,7 @@ pathresults <- here::here("results","features")
     library(ggbiplot)
     
     
-    plot <- ggbiplot(pca_res,var.axes=FALSE,groups=pca_res.campg,choices=c(1,2),alpha =0.5,ellipse = TRUE,ellipse.prob=0.99)+scale_colour_manual(values = c("grey", "red"))+ theme_bw()
+    plot <- ggbiplot::ggbiplot(pca_res,var.axes=FALSE,groups=pca_res.campg,choices=c(1,2),alpha =0.5,ellipse = TRUE,ellipse.prob=0.99)+scale_colour_manual(values = c("grey", "red"))+ theme_bw()
     
     ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_E.jpg"),
                     plot = plot, 

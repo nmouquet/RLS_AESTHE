@@ -101,7 +101,7 @@ files_focus <- paste0(focus_images,".png")
     
   # cluster.lab.plot : need to run colors first
     require(dplyr)
-    require(fisheyeR)
+    # require(fisheyeR)
     cluster.lab.plot <- function (n_im,clust,lg_sz,ncol,FISH)
     {
         #n_im=2

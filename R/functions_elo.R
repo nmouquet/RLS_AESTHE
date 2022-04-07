@@ -1,5 +1,6 @@
-###################################################################################################
-#' Functions used in the scripts of the folder analysis/elo
+################################################################################
+
+#' Functions used in the scripts of the folder `analysis/elo`
 #' 
 #'
 #' @author Juliette Langlois, \email{juliette.a.langlois@@gmail.com},
@@ -8,20 +9,27 @@
 #'         Alienor Stahl, \email{a.stahl67@@gmail.com}
 #'
 #' @date 2021/02/17 first created
-##################################################################################################
+#' 
+################################################################################
 
-#' booting_elo
-#' function to calculate the elo score every step of x matches 
+
+
+#' Booting ELO
+#' 
+#' @description 
+#' Calculates the ELO score every step of x matches 
 #'
-#' @param data a dataframe with four columns at least: challenger_1 and challenger_2, 
-#' Winner and Loser
-#' @param startvalue the value at which all challengers start to calculate the elo score
-#' @param runs the number of time to bootstrap the function
-#' @param stepelo the threshold at which to calculate the elo score
+#' @param data A `data.frame` with four columns at least: `challenger_1`,
+#'   `challenger_2`, `Winner`, and `Loser`
+#' @param startvalue The value at which all challengers start to calculate 
+#'   the ELO score
+#' @param runs The number of time to bootstrap the function
+#' @param stepelo The threshold at which to calculate the ELO score
 #'
 #' @return
+#' 
 #' @export
-#'
+
 booting_elo <- function(data, startvalue = 1500, runs = 1, stepelo = 100) {
   
   # initialization of the dataframe to record the elo scores
@@ -47,10 +55,12 @@ booting_elo <- function(data, startvalue = 1500, runs = 1, stepelo = 100) {
                                                    loser      = data$Loser[1:minmatch],
                                                    startvalue = startvalue,
                                                    runs       = runs)
-  elo                      <- EloChoice::ratings(res, drawplot = F)
+  
+  elo                      <- EloChoice::ratings(res, drawplot = FALSE)
   elo_match_nb             <- tidyjson::bind_rows(elo_match_nb, elo[sort(names(elo))])
-  elo_match_nb$match_nb[2] <-  minmatch
-  match_current            <-  minmatch
+  
+  elo_match_nb$match_nb[2] <- minmatch
+  match_current            <- minmatch
   
   maxmatch <-  opti_maxmatch(data, minmatch, stepelo)[1]
   extra    <-  opti_maxmatch(data, minmatch, stepelo)[2]
@@ -60,7 +70,7 @@ booting_elo <- function(data, startvalue = 1500, runs = 1, stepelo = 100) {
   
   while(match_current < maxmatch + extra) {
     
-    match_current              <-  match_current + stepelo
+    match_current              <- match_current + stepelo
     res                        <- EloChoice::elochoice(winner     = data$Winner[1:match_current], 
                                                        loser      = data$Loser[1:match_current], 
                                                        startvalue = startvalue, 
