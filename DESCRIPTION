@@ -1,0 +1,33 @@
+Package: RLS.AESTHE
+Type: Package
+Title: Research Compendium
+Version: 1.0
+Authors@R: c(
+    person(given   = "Nicolas",
+           family  = "Mouquet",
+           role    = c("aut", "cre", "cph"),
+           email   = "nicolas.mouquet@cnrs.fr",
+           comment = c(ORCID = "0000-0003-1840-6984")),
+    person(given   = "Juliette",
+           family  = "Langlois",
+           role    = "aut",
+           email   = "juliette.a.langlois@gmail.com"),
+    person(given   = "Valentine",
+           family  = "Fleure",
+           role    = "aut",
+           email   = "valentine.fleure@gmail.com"),
+    person(given   = "Nicolas",
+           family  = "Casajus",
+           role    = "rev",
+           email   = "nicolas.casajus@fondationbiodiversite.fr",
+           comment = c(ORCID = "0000-0002-5537-5294")))
+Description: Research compendium to reproduce analyses and figures of the 
+    article: 'Global mismatch between the aesthetic value of reef fishes and 
+    their conservation priorities' by Langlois, Mouquet et al. submitted to 
+    PLOS Biology.
+URL: https://github.com/nmouquet/RLS_AESTHE
+BugReports: https://github.com/nmouquet/RLS_AESTHE/issues
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
