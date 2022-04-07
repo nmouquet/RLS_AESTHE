@@ -94,7 +94,7 @@ source("make.R")
 All required packages will be installed (if necessary) and loaded.
 
 > :boom: WARNING: running `make.R` calls all the scripts and takes days so if 
-you want to work on one or a few scripts, you should run lines 14-21 of 
+you want to work on one or a few scripts, you should run lines 17-42 of 
 `make.R` and then go to the other script.
 
 Enjoy!

@@ -10,7 +10,7 @@
 #' 
 #' @note
 #' **WARNING:** Running this script calls all the scripts and takes days so if 
-#' you want to work on one or a few scripts, you should run lines 14-21 of this 
+#' you want to work on one or a few scripts, you should run lines 17-42 of this 
 #' script and then go to the other one.
 
 
