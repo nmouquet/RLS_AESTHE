@@ -55,7 +55,7 @@ brackets (all in `analyses/`):
 and `biodiversity/02_functional_div.R` generates data for panel b and the entire figure)
 - Figure 4 (`biodiversity/01_phylogeny.R` produces the tree)
 - Figure 5 (`conservation/01_iucn_status.R`)
-- Figure S1 A reproduced Wikipedia source (see legend) 
+- Figure S1 A (`features/cluster.R`)
 - Figure S1 B (`features/cluster.R`) 
 - Figure S1 C modified from Wikipedia source (see legend) 
 - Figure S1 D  (`features/momocs.R`)
