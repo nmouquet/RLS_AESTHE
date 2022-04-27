@@ -104,10 +104,10 @@ files_focus <- paste0(focus_images,".png")
     # require(fisheyeR)
     cluster.lab.plot <- function (n_im,clust,lg_sz,ncol,FISH)
     {
-        n_im=2
-        clust=3
-        lg_sz=7
-        FISH=TRUE
+        # n_im=2
+        # clust=3
+        # lg_sz=7
+        # FISH=TRUE
       
         name <- gsub(".png","",files[n_im])
       
@@ -267,23 +267,29 @@ files_focus <- paste0(focus_images,".png")
 
 #----
   
-#ILLUSTRATION OF THE CIELABSPACE 
+#ILLUSTRATION OF THE CIELABSPACE FIGURE S1 A
   
-  x <- seq(-100,100,1)
-  y <- seq(-100,100,1)
+  x <- seq(-100,100,0.5)
+  y <- seq(-100,100,0.5)
 
-  #bkg <- cbind(kmeans$centers[clust_id,"c.1"],expand.grid(x,y))
   bkg <- cbind(70,expand.grid(x,y))
   colnames(bkg) <- c("c.1","c.2","c.3")
   bkg <-  cbind(bkg,col=rgb(convertColor(bkg, "Lab", "sRGB")))
-  install.packages("plot3D")
-  plot3D::scatter3D(bkg$x, y, z, pch = 18, cex = 2, 
-            theta = 20, phi = 20, ticktype = "detailed")
+  require(cowplot)
+  p <- ggplot(bkg, aes(x=c.2, y=c.3)) + geom_point(size=1,shape=15,colour=bkg$col)+ theme_nothing() + 
+    scale_x_continuous(expand=c(0,0)) +
+    scale_y_continuous(expand=c(0,0)) +
+    labs(x = NULL, y = NULL)
+  grd_x <- seq(-100, 100, length.out = 9)
+  grd_y <- seq(-100, 100, length.out = 9)
   
-  ggplot(bkg, aes(x=c.2, y=c.3)) + geom_point(size=1,shape=15,colour=bkg$col) + geom_hline(yintercept = 0,color="white") + geom_vline(xintercept = 0,color="white")
+  p <- p + geom_hline(yintercept = grd_y, col = "grey",size=1) + geom_vline(xintercept = grd_x, col = "grey",size=1)
   
-  p[[3]] <- bg+geom_point(data=dat,aes(x=dat$c.2,y=dat$c.3),size=3,shape=21,fill=col_clust,color="white")+geom_text(data=dat,aes(label=rownames(dat)),color="white",size=3,hjust=-1, vjust=0)+scale_fill_identity() + xlab("") + ylab("") + ggtitle("Kmeans clusters") + theme(panel.border = element_rect(colour = "black", fill=NA, size=1), axis.ticks = element_blank(),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),panel.background = element_blank(),plot.title = element_text(size = 10),axis.text.x = element_text(size=5),axis.text.y = element_text(size=5))
-  
+  ggplot2::ggsave(filename = here::here("figures_tables", "FIGURE_A.jpg"),
+                  plot = p, 
+                  width = 20, height = 20, units = "cm", dpi = 600)
+#----  
+
   
   
 #ANALYSE ALL IMAGES----
