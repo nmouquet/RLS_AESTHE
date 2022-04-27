@@ -216,19 +216,19 @@ pathresults <- here::here("results","features")
     factoextra::fviz_eig(pca_fish,main = "Eigenvalues")
     
     ##with ggplot (old version )
-      # library(ggplot2)
-      # factoextra::fviz_pca_biplot(pca_fish, 
-      #                             col.ind       = data_scale$esthe_pred, 
+      #  library(ggplot2)
+      # factoextra::fviz_pca_biplot(pca_fish,
+      #                             col.ind       = data_scale$esthe_pred,
       #                             geom          = "point",
       #                             gradient.cols = c("blue", "green","yellow","orange", "red" ),
       #                             repel         = TRUE,
       #                             col.var       = "darkblue",
       #                             geom.var      = c("arrow", "text"),
       #                             alpha.ind     = 0.9,
-      #                             ggtheme       = theme_minimal(), 
-      #                             ylim          = c(-5,6), 
+      #                             ggtheme       = theme_minimal(),
+      #                             ylim          = c(-5,6),
       #                             xlim          = c(-7,5),
-      #                             legend.position = c(0.2, 0.8)) + 
+      #                             legend.position = c(0.2, 0.8)) +
       #   labs(col="Aesthetic", title = " ") +
       #   theme(legend.position = c(0.95, 0.9))
 
@@ -371,11 +371,18 @@ pathresults <- here::here("results","features")
         which(sel)
       }
      
+      temp <- read.csv(here::here("data","Data_S4.csv"),sep=";")
+      colnames(temp) <- c("name","url")
+      
       x <- res.ind$coord[,'Dim.1']
       y <- res.ind$coord[,'Dim.2']
       df <- data.frame(x=x, y=y,cop=datacor$copyright)
+      df$cop_col <- "grey"
+      df$cop_col[rownames(df) %in% temp$name[stringr::str_detect(temp$url, "reeflifesurvey")]]="red"
       rownames(df) <- rownames(res.ind$coor)
-      plot(y ~ x, data=df,col=datacor$copyright)
+
+      df <- df[df$cop_col=="red",]
+      plot(y ~ x, data=df,ylim = c(-5,6),xlim = c(-7,5))
       abline(v=0)
       abline(h=0)
       id_fish <- identifyPch(x=df$x,y=df$y)
