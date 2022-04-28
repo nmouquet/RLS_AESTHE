@@ -2,7 +2,7 @@
 
 Research compendium to reproduce analyses and figures of the article: 
 _Global mismatch between the aesthetic value of reef fishes and their conservation priorities_ 
-by Langlois, Mouquet _et al._ submitted to PLOS Biology.
+by Langlois, Mouquet _et al._ published in PLOS Biology.
 
 
 ## General
