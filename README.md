@@ -1,9 +1,10 @@
 # RLS_AESTHE
 
 Research compendium to reproduce analyses and figures of the article: 
-_The aesthetic value of reef fishes is globally mismatched to their conservation priorities_ 
-by Langlois, Mouquet _et al._ published in PLOS Biology.
 
+Langlois J, Guilhaumon F, Baletaud F, Casajus N, De Almeida Braga C, Fleure V, Kulbicki K, Loiseau N, Mouillot D, Renoult JP, Stahl A, Stuart Smith RD, Tribot AS & N, Mouquet (2022) The aesthetic value of reef fishes is globally mismatched to their conservation priorities. PLoS Biol 20(6): e3001640. doi:10.1371/journal.pbio.3001640
+
+http://nicolasmouquet.free.fr/pdf/Langlois_et_al_2022_Plos_Biology.htm
 
 ## General
 

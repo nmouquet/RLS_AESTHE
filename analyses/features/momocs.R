@@ -68,10 +68,10 @@ files_path <- list.files(pathphoto_mask, full = T)
   
   momocs <- function (n_im,f,coo,coo.p,files) # need to run fourier first to compute coo.p
   {
-     #n_im <- 1
-     #f=27
-     #coo=coo
-     #coo.p=coo.p
+     n_im <- 1
+     f=27
+     coo=coo
+     coo.p=coo.p
      
     #var that will be computed 
      
@@ -89,8 +89,12 @@ files_path <- list.files(pathphoto_mask, full = T)
       
       MO_Fourier_pc1=as.numeric(coo.p$x[,"PC1"])[pos]
       MO_Fourier_pc2=as.numeric(coo.p$x[,"PC2"])[pos]
-
-      cbind.data.frame(name,MO_Fourier_pc1,MO_Fourier_pc2)
+      
+      bot.f <- efourier(coo, 15)
+      res <- symmetry(bot.f)
+      symetry=as.numeric(hist(res[, 'sym'])[pos])
+      
+      cbind.data.frame(name,MO_Fourier_pc1,MO_Fourier_pc2,symetry)
       
   }
   
@@ -118,6 +122,7 @@ files_path <- list.files(pathphoto_mask, full = T)
 
     coo.p <- fourier(f=15,coo=coo)
     momocs(n_im=2,f=15,coo=coo,coo.p=coo.p,files=files)
+    
     
 #----
 
